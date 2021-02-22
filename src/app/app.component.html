@@ -9,8 +9,10 @@
              <a class="nav-link" (click)="onOpenModal(null, 'add')" data-toggle="modal" data-target="#exampleModal">Add Graduated <span class="sr-only">(current)</span></a>
           </li>
        </ul>
+         <!-- Search gradutes -->
        <form class="form-inline my-2 my-lg-0">
-          <input type="search"  name="key" id="searchName" class="form-control mr-sm-2" placeholder="Search Graduates..." required>
+          <input type="search" (ngModelChange)="searchGraduates(key.value)" #key="ngModel" ngModel
+          name="key" id="searchName" class="form-control mr-sm-2" placeholder="Search Graduates..." required>
        </form>
     </div>
   </nav>

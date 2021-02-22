@@ -70,6 +70,23 @@ export class AppComponent implements OnInit{
     );
   }
 
+  public searchGraduates(key: string): void {
+    console.log(key);
+    const results: Graduated[] = [];
+    for(const graduated of this.graduates){
+      if (graduated.firstName.toLowerCase().indexOf(key.toLowerCase()) !== -1
+      || graduated.lastName.toLowerCase().indexOf(key.toLowerCase()) !== -1
+      || graduated.email.toLowerCase().indexOf(key.toLowerCase()) !== -1
+      || graduated.jobTitle.toLowerCase().indexOf(key.toLowerCase()) !== -1){
+        results.push(graduated);
+      }
+    }
+    this.graduates = results;
+    if(results.length === 0 || !key){
+      this.getGraduates();
+    }
+  }
+
   public onOpenModal(graduated: Graduated, mode: string): void {
     const container = document.getElementById('main-container');
     const button = document.createElement('button');
