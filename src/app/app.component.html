@@ -167,5 +167,10 @@
     </div>
   </div>
   </div>
-  
+  <!-- Notification for no gradutes -->
+<div *ngIf="graduates?.length == 0" class="col-lg-12 col-md-12 col-xl-12">
+   <div class="alert alert-info" role="alert">
+     <h4 class="alert-heading">NO GRADUATES!</h4>
+     <p>No Graduates were found.</p>
+   </div>
 </div>
