@@ -12,6 +12,7 @@ import { GraduatedService } from './graduated.service';
 export class AppComponent implements OnInit{
   public graduates: Graduated[];
   public editGraduated: Graduated;
+  public deleteGraduated: Graduated;
 
   constructor(private graduatedService: GraduatedService){}
 
@@ -57,6 +58,18 @@ export class AppComponent implements OnInit{
     );
   }
 
+  public onDeleteGraduated(graduatedId: number): void {
+    this.graduatedService.deleteGraduated(graduatedId).subscribe(
+      (response: void) => {
+        console.log(response);
+        this.getGraduates();
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+  }
+
   public onOpenModal(graduated: Graduated, mode: string): void {
     const container = document.getElementById('main-container');
     const button = document.createElement('button');
@@ -73,6 +86,7 @@ export class AppComponent implements OnInit{
     }
 
     if (mode === 'delete'){
+      this.deleteGraduated = graduated;
       button.setAttribute('data-target', '#deleteGraduatedModal');
     }
     container.appendChild(button);
