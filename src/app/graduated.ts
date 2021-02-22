@@ -6,4 +6,5 @@ export interface Graduated {
     email: string;
     gender: string;
     imageUrl: string;
+    jobTitle: string;
 }
