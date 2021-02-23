@@ -25,4 +25,9 @@ export class GraduatedService{
     public deleteGraduated(graduatedId: number): Observable<void>{
         return this.http.delete<void>(`${this.apiServerUrl}/graduates/delete/${graduatedId}`);
     }
+
+    public findGraduated(graduatedId: number): Observable<void>{
+        return this.http.delete<void>(`${this.apiServerUrl}/graduates/find/${graduatedId}`);
+    }
+
 }
