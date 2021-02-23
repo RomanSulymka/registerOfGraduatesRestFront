@@ -7,7 +7,8 @@ import { GraduatedService } from './graduated.service';
 @Component({
   selector: 'app-root',
   templateUrl: './graduated.component.html',
-  styleUrls: ['./graduated.component.css']
+  styleUrls: ['./graduated.component.css'],
+  template: `<h3>Graduated Page</h3>`
 })
 export class GraduatedComponent implements OnInit{
   public graduates: Graduated[];
