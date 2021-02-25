@@ -71,8 +71,8 @@ export class GraduatedComponent implements OnInit{
     );
   }
 
-  public onFindGraduated(graduatedId: number): void {
-    this.graduatedService.findGraduated(graduatedId).subscribe(
+  public onInfoAboutGraduated(graduatedId: number): void {
+    this.graduatedService.infoAboutGraduated(graduatedId).subscribe(
       (response: void) => {
         console.log(response);
         this.getGraduates();
@@ -119,9 +119,9 @@ export class GraduatedComponent implements OnInit{
       this.deleteGraduated = graduated;
       button.setAttribute('data-target', '#deleteGraduatedModal');
     }
-    if (mode === 'find'){
+    if (mode === 'info'){
       this.findGraduated = graduated;
-      button.setAttribute('data-target', '#findGraduatedModal');
+      button.setAttribute('data-target', '#infoAboutGraduatedModal');
     }
     container.appendChild(button);
     button.click();

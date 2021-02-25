@@ -83,7 +83,7 @@ export class UserPageComponent implements OnInit {
     );
   }
 
-  public searchGraduates(key: string): void {
+  public searchUsers(key: string): void {
     console.log(key);
     const results: User[] = [];
     for (const user of this.users){

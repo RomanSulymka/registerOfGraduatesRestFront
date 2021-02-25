@@ -15,3 +15,60 @@
        <!--TODO: Must add 'search by user'-->
     </div>
 </nav>
+<ol class="breadcrumb" style="margin-right: 1%; margin-left: 1%; margin-top: 1%; border-radius: 16px;">
+   <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+   <li class="breadcrumb-item active">Users</li>
+ </ol>
+
+      <!-- Users list table -->
+ <div class="card" style="margin: 2%; border-radius: 30px;">
+   <div class="card-body">
+     <h2 class="card-title">Users List</h2>
+     <div class="card-text">
+       <form class="form-inline">
+         <div class="form-group">
+           <label for="title">Title:</label>
+           <input id="title" name="title" type="search" class="form-control ml-2 mr-2" (ngModelChange)="searchUsers(key.value)" #key="ngModel" ngModel
+           name="key" placeholder="Search Users...">
+         </div>
+ 
+         <button class="btn btn-primary">Search</button>
+         <a class="btn btn-default">New</a>
+       </form>
+     </div>
+     <div>
+       <div class="alert alert-m-2"></div>
+       <div class="table-responsive" *ngFor="let user of users">
+         <table class="table table-centered table-hover mb-0" id="datatable">
+           <thead>
+           <tr>
+             <th class="border-top-0" scope="col">Id</th>
+             <th class="border-top-0" scope="col">Name</th>
+             <th class="border-top-0" scope="col">E-mail</th>
+             <th class="border-top-0" scope="col">Role</th>
+             <th class="border-top-0" scope="col" style="width:120px"></th>
+           </tr>
+           </thead>
+           <tbody>
+           <tr>
+             <td>{{user?.id}}</td>
+             <td>{{user?.username}}</td>
+             <td>{{user?.email}}</td>
+             <td>{{user?.role.name}}</td>
+             <td style="white-space: nowrap"> 
+               <a class="btn btn-secondary">Edit</a>&nbsp;
+               <button class="btn btn-danger">Delete</button>
+             </td>
+           </tr>
+           </tbody>
+         </table>
+       </div>
+     </div>
+ </div>
+   <!-- Notification for no users -->
+<div *ngIf="users?.length == 0" class="col-lg-12 col-md-12 col-xl-12">
+   <div class="alert alert-info" role="alert">
+     <h4 class="alert-heading">NO USERS!</h4>
+     <p>No Users were found.</p>
+   </div>
+</div>

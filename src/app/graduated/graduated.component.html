@@ -19,10 +19,16 @@
        </form>
     </div>
 </nav>
+<ol class="breadcrumb" style="margin-right: 1%; margin-left: 1%; margin-top: 1%; border-radius: 16px;">
+   <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+   <li class="breadcrumb-item active">Graduates</li>
+ </ol>
+   <!-- All Graduates-->
 <div class="container" id="main-container">
     <div class="row">
-        <div *ngFor="let graduated of graduates" class="col-md-6 col-xl-3">
-            <div class="card m-b-30">
+       <!--Default md-6 xl-3 -->
+        <div *ngFor="let graduated of graduates" class="col-md-6 col-xl-6">
+            <div class="card m-b-30" style="border-radius: 30px;">
                 <div class="card-body row">
                     <div class="col-6">
                         <a href=""><img src="{{graduated?.imageUrl}}" alt="" class="img-fluid rounded-circle w-60"></a>
@@ -38,14 +44,14 @@
                 </ul>
                 <div class="card-body">
                     <div class="float-right btn-group btn-group-sm">
-                        <a (click)="onOpenModal(graduated, 'edit')" href="#" class="btn btn-primary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
-                        <a (click)="onOpenModal(graduated, 'delete')" href="#" class="btn btn-secondary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-times"></i></a>
-                        <a (click)="onOpenModal(graduated, 'find')" href="#" class="btn btn-primary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Info"><i class="fas fa-address-book"></i> </a>
+                        <a (click)="onOpenModal(graduated, 'edit')" class="btn btn-primary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
+                        <a (click)="onOpenModal(graduated, 'delete')" class="btn btn-secondary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-times"></i></a>
+                        <a (click)="onOpenModal(graduated, 'info')" class="btn btn-warning tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Info"><i class="fa fa-user"></i> </a>
                   </div>
                     <ul class="social-links list-inline mb-0">
                         <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Facebook"><i class="fa fa-facebook-f"></i></a></li>
-                        <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Twitter"><i class="fa fa-twitter"></i></a></li>
-                        <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Skype"><i class="fa fa-skype"></i></a></li>
+                        <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Twitter"><i class="fa fa-instagram"></i></a></li>
+                        <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Skype"><i class="fa fa-linkedin"></i></a></li>
                     </ul>
                 </div>
             </div>
@@ -131,7 +137,7 @@
                    <input type="email" ngModel="{{editGraduated?.email}}" name="email" class="form-control" id="email" placeholder="Email">
                 </div>
                 <div class="form-group">
-                   <label for="phone">Job title</label>
+                   <label for="jobTile">Job title</label>
                    <input type="text" ngModel="{{editGraduated?.jobTitle}}" name="jobTitle" class="form-control" id="jobTitle" placeholder="Job title">
                 </div>
                 <div class="form-group">
@@ -174,12 +180,12 @@
   </div>
   </div>
 
-   <!-- Find Modal -->
-   <div class="modal fade" id="findGraduatedModal" tabindex="-1" role="dialog" aria-labelledby="findGraduatedLabel" aria-hidden="true">
+   <!-- Info Modal -->
+   <div class="modal fade" id="infoGraduatedModal" tabindex="-1" role="dialog" aria-labelledby="infoGraduatedLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
          <div class="modal-content">
             <div class="modal-header">
-               <h5 class="modal-title" id="findGraduatedLabel">Find Graduated</h5>
+               <h5 class="modal-title" id="infoGraduatedLabel">Find Graduated</h5>
                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                <span aria-hidden="true">&times;</span>
                </button>
@@ -188,7 +194,7 @@
                <p>Info about graduated {{findGraduated?.firstName}} {{findGraduated?.lastName}}?</p>
                <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                  <button (click)="onFindGraduated(findGraduated?.id)" class="btn btn-danger" data-dismiss="modal">Yes</button>
+                  <button (click)="onInfoAboutGraduated(findGraduated?.id)" class="btn btn-danger" data-dismiss="modal">Yes</button>
                </div>
             </div>
          </div>
