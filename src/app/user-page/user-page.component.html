@@ -21,7 +21,7 @@
  </ol>
 
       <!-- Users list table -->
- <div class="card" style="margin: 2%; border-radius: 30px;">
+ <div class="card" style="margin: 2%; border-radius: 30px;" id="main-container">
    <div class="card-body">
      <h2 class="card-title">Users List</h2>
      <div class="card-text">
@@ -33,7 +33,7 @@
          </div>
  
          <button class="btn btn-primary">Search</button>
-         <a class="btn btn-default">New</a>
+         <a (click)="onOpenModal(null, 'add')" data-toggle="modal" data-target="#exampleModal"class="btn btn-default">New <span class="sr-only">(current)</span></a>
        </form>
      </div>
      <div>
@@ -65,6 +65,40 @@
        </div>
      </div>
  </div>
+<!-- Add User -->
+ <div class="modal fade" id="updateUserModal" tabindex="-1" role="dialog" aria-labelledby="updateUserModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+       <div class="modal-header">
+          <h5 class="modal-title" id="updateUserModalLabel">Add User</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+          </button>
+       </div>
+       <div class="modal-body">
+          <form #addForm="ngForm" (ngSubmit)="onAddUser(addForm)">
+          <div class="form-group">
+             <label for="username">Username</label>
+             <input type="text" ngModel name="username" class="form-control" id="username" placeholder="Username" required>
+          </div>
+          <div class="form-group">
+             <label for="password">Password</label>
+             <input type="text" ngModel name="password" class="form-control" id="password" placeholder="Password" required>
+          </div>
+          <div class="form-group">
+             <label for="email">Email Address</label>
+             <input type="email" ngModel name="email" class="form-control" id="email" placeholder="Email" required>
+          </div>
+          <div class="modal-footer">
+             <button type="button" id="add-user-form" class="btn btn-secondary" data-dismiss="modal">Close</button>
+             <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary" >Save changes</button>
+          </div>
+          </form>
+       </div>
+    </div>
+  </div>
+  </div>
+
    <!-- Notification for no users -->
 <div *ngIf="users?.length == 0" class="col-lg-12 col-md-12 col-xl-12">
    <div class="alert alert-info" role="alert">

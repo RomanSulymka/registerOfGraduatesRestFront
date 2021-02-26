@@ -71,9 +71,9 @@ export class GraduatedComponent implements OnInit{
     );
   }
 
-  public onInfoAboutGraduated(graduatedId: number): void {
-    this.graduatedService.infoAboutGraduated(graduatedId).subscribe(
-      (response: void) => {
+  public onInfoAboutGraduated(graduated: Graduated): void {
+    this.graduatedService.infoAboutGraduated(graduated).subscribe(
+      (response: Graduated) => {
         console.log(response);
         this.getGraduates();
       },

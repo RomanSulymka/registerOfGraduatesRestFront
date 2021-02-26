@@ -7,4 +7,7 @@ export interface Graduated {
     gender: string;
     imageUrl: string;
     jobTitle: string;
+    graduationYearFromBachelor: string;
+    graduationYearFromMaster: string;
+    graduationYearFromOrkSpecialist: string;
 }
