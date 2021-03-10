@@ -7,7 +7,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 @Component({
   selector: 'app-user-page',
   template: `<h3>User Page</h3>`,
-  templateUrl: './user-page.component.html',
+  templateUrl: './user-page.component.html'
 })
 export class UserPageComponent implements OnInit {
   public users: User[];
