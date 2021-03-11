@@ -16,7 +16,6 @@ const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'user', component: UserPageComponent},
   {path: 'graduated', component: GraduatedComponent},
-  {path: '**', component: NotFoundComponent},
   {path: 'logout', component: LoginComponent},
   { path: 'mod', component: BoardModeratorComponent },
   { path: 'admin', component: BoardAdminComponent },

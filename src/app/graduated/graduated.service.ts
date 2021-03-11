@@ -27,7 +27,7 @@ export class GraduatedService{
     }
 
     public infoAboutGraduated(graduated: Graduated): Observable<Graduated>{
-        return this.http.delete<Graduated>(`${this.apiServerUrl}/graduates/info/${graduated}`);
+        return this.http.get<Graduated>(`${this.apiServerUrl}/graduates/info/${graduated}`);
     }
 
 }
