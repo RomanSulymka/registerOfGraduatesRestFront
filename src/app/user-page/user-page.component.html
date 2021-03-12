@@ -1,20 +1,3 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="" style="color:white;">Graduated Manager</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarColor02">
-       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-            <a class="nav-link" href="graduated">Graduates</a>
-         </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="user">Users</a>
-         </li>
-       </ul>
-       <!--TODO: Must add 'search by user'-->
-    </div>
-</nav>
 <ol class="breadcrumb" style="margin-right: 1%; margin-left: 1%; margin-top: 1%; border-radius: 16px;">
    <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
    <li class="breadcrumb-item active">Users</li>
@@ -27,7 +10,7 @@
      <div class="card-text">
        <form class="form-inline">
          <div class="form-group">
-           <label for="title">Title:</label>
+           <label for="title">Username:</label>
            <input id="title" name="title" type="search" class="form-control ml-2 mr-2" (ngModelChange)="searchUsers(key.value)" #key="ngModel" ngModel
            name="key" placeholder="Search Users...">
          </div>
