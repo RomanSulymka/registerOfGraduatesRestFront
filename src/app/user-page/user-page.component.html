@@ -37,7 +37,9 @@
              <td>{{user?.id}}</td>
              <td>{{user?.username}}</td>
              <td>{{user?.email}}</td>
-             <td>{{user?.role.name}}</td>
+             <li *ngFor="let role of user.roles">
+             <td>{{ role.name }}</td>
+             </li>
              <td style="white-space: nowrap"> 
                <a class="btn btn-secondary">Edit</a>&nbsp;
                <button class="btn btn-danger">Delete</button>
