@@ -8,7 +8,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { BoardAdminComponent } from './board-admin/board-admin.component';
 import { BoardModeratorComponent } from './board-moderator/board-moderator.component';
 import { RegisterComponent } from './register/register.component';
-
+import { WorkComponent } from './work/work.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -19,6 +19,7 @@ const routes: Routes = [
   { path: 'mod', component: BoardModeratorComponent },
   { path: 'admin', component: BoardAdminComponent },
   { path: 'profile', component: ProfileComponent },
+  { path: 'work', component: WorkComponent},
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'register', component: RegisterComponent}
 ];

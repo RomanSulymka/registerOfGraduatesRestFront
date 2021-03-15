@@ -13,6 +13,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { BoardAdminComponent } from './board-admin/board-admin.component';
 import { BoardModeratorComponent } from './board-moderator/board-moderator.component';
 import { RegisterComponent } from './register/register.component';
+import { WorkComponent } from './work/work.component';
 
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 
@@ -29,6 +30,7 @@ import { authInterceptorProviders } from './_helpers/auth.interceptor';
     BoardAdminComponent,
     ProfileComponent,
     RegisterComponent,
+    WorkComponent
   ],
   imports: [
     AppRoutingModule,

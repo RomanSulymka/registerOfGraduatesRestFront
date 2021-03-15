@@ -6,7 +6,7 @@
  <!--Admin board-->
  <nav class="nav" style="margin-right: 1%; margin-left: 1%; margin-top: 1%; border-radius: 16px;">
    <li class="nav-item active" style="color: teal;">
-      <button type="button" class="btn btn-outline-info" (click)="onOpenModal(null, 'add')" data-toggle="modal" data-target="#exampleModal">Add Graduated <span class="sr-only">(current)</span></button>
+      <button type="button" class="floating-button" (click)="onOpenModal(null, 'add')" data-toggle="modal" data-target="#exampleModal">Add new <span class="sr-only">(current)</span></button>
    </li>
    <form class="form-inline ml-auto">
       <input type="search" (ngModelChange)="searchGraduates(key.value)" #key="ngModel" ngModel
@@ -20,19 +20,23 @@
     <div class="row">
        <!--Default md-6 xl-3 -->
         <div *ngFor="let graduated of graduates" class="col-md-6 col-xl-6">
-            <div class="card m-b-30" style="border-radius: 30px; height: 303.5px;">
+            <div class="card m-b-30" style="border-radius: 30px;">
                 <div class="card-body row">
                     <div class="col-6">
                         <a href=""><img src="{{graduated?.imageUrl}}" alt="" class="img-fluid rounded-circle w-60"></a>
                     </div>
                     <div class="col-6 card-title align-self-center mb-0">
                         <h5> {{graduated?.lastName}} {{graduated?.firstName}} {{graduated?.middleName}}</h5>
-                        <p class="m-0">{{graduated?.jobTitle}}</p>
+                        <p class="m-0" *ngFor="let work of graduated.works; let i =index"> <i *ngIf ="i>=graduated.works.length -1" >{{work?.position }}</i></p>
                     </div>
                 </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item"><i class="fa fa-envelope float-right"></i>{{graduated?.email}}</li>
                     <li class="list-group-item"><i class="fa fa-genderless float-right"></i>{{graduated?.gender}}</li>
+                    <li class="list-group-item"><i class="fa fa-genderless float-right"></i>{{graduated?.graduationYearFromBachelor}}</li>
+                    <li class="list-group-item"  *ngFor="let work of graduated.works; let i =index">
+                     <i *ngIf ="i>=graduated.works.length -1">{{ work?.company }}</i>
+                  </li>
                 </ul>
                 <div class="card-body">
                     <div class="float-right btn-group btn-group-sm">

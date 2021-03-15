@@ -10,4 +10,5 @@ export interface Graduated {
     graduationYearFromBachelor: string;
     graduationYearFromMaster: string;
     graduationYearFromOrkSpecialist: string;
+    work: string;
 }
