@@ -1,0 +1,17 @@
+<div class="container" id="main-container">
+    <div class="row">
+       <!--Default md-6 xl-3 -->
+        <div *ngFor="let work of works" class="col-md-6 col-xl-6">
+            <div class="card m-b-30" style="border-radius: 30px; height: 347px;">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><i class="fa fa-envelope float-right"></i>{{work?.company}}</li>
+                    <li class="list-group-item"><i class="fa fa-genderless float-right"></i>{{work?.position}}</li>
+                    <li class="list-group-item"><i class="fa fa-genderless float-right"></i>{{work?.graduated}}</li>
+
+                </ul>
+               
+            </div>
+        </div>
+        </div>
+    </div>
+    
