@@ -14,8 +14,18 @@ import { BoardAdminComponent } from './board-admin/board-admin.component';
 import { BoardModeratorComponent } from './board-moderator/board-moderator.component';
 import { RegisterComponent } from './register/register.component';
 import { WorkComponent } from './work/work.component';
-
+import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
+import { ReactiveFormsModule } from '@angular/forms';
+import {MatNativeDateModule} from '@angular/material/core';
+import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog'
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
+import { MatDialogModule } from "@angular/material/dialog";
+import { MatButtonModule } from "@angular/material/button";
+import { MatIconModule } from "@angular/material/icon";
+import { MaterialModule } from './material/material.module';
 
 
 @NgModule({
@@ -36,9 +46,27 @@ import { authInterceptorProviders } from './_helpers/auth.interceptor';
     AppRoutingModule,
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    BrowserAnimationsModule,
+    MatNativeDateModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    MatTabsModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    HttpClientModule,
+    MatNativeDateModule,
+    ReactiveFormsModule,
+    BrowserModule, FormsModule, MatButtonModule, MatIconModule, AppRoutingModule, MatDialogModule, BrowserAnimationsModule, MatTabsModule,
+    MaterialModule,
+    MatDialogModule
   ],
-  providers: [authInterceptorProviders],
+  providers: [authInterceptorProviders,
+  { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },
+  {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}} ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+platformBrowserDynamic().bootstrapModule(AppModule)
+  .catch(err => console.error(err));
