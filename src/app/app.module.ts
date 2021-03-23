@@ -57,9 +57,9 @@ import { MaterialModule } from './material/material.module';
     HttpClientModule,
     MatNativeDateModule,
     ReactiveFormsModule,
-    BrowserModule, FormsModule, MatButtonModule, MatIconModule, AppRoutingModule, MatDialogModule, BrowserAnimationsModule, MatTabsModule,
+    BrowserModule, FormsModule, MatButtonModule, MatIconModule, AppRoutingModule, MatDialogModule, BrowserAnimationsModule,
     MaterialModule,
-    MatDialogModule
+    MatDialogModule,
   ],
   providers: [authInterceptorProviders,
   { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },

@@ -20,3 +20,22 @@
     color: white;
     transform: translateY(-7px);
   }
+  
+  .example-small-box, .example-large-box {
+    display: flex;
+    margin: 16px;
+    padding: 16px;
+    border-radius: 8px;
+  }
+  
+  .example-small-box {
+    width: 525px;
+    height: 380px;
+  }
+  
+  .example-large-box {
+    height: 600px;
+    width: 600px;
+  }
+
+  

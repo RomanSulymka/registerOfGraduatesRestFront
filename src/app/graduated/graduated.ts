@@ -6,9 +6,10 @@ export interface Graduated {
     email: string;
     gender: string;
     imageUrl: string;
+    linkedinUrl: string;
     jobTitle: string;
     graduationYearFromBachelor: string;
     graduationYearFromMaster: string;
     graduationYearFromOrkSpecialist: string;
-    work: string;
+    works: string;
 }

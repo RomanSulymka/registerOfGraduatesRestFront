@@ -2,8 +2,9 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Graduated } from './graduated';
-import { TokenStorageService } from '../_services/token-storage.service';
 import { GraduatedService } from './graduated.service';
+import { ActivatedRoute, Router, RouterLinkActive, Routes } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-root',
@@ -15,9 +16,10 @@ export class GraduatedComponent implements OnInit{
   public editGraduated: Graduated;
   public deleteGraduated: Graduated;
   public findGraduated: Graduated;
-
+  public findInfoAboutGraduated: Graduated;
+   
   constructor(private graduatedService: GraduatedService){}
-
+  
   ngOnInit(){
     this.getGraduates();
   }
@@ -84,6 +86,18 @@ export class GraduatedComponent implements OnInit{
     );
   }
 
+  public onFullInfoAboutGraduated(graduated: Graduated): void {
+    this.graduatedService.fullInfoAboutGraduated(graduated).subscribe(
+      (response: Graduated) => {
+        console.log(response);
+        this.getGraduates();
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+  }
+
   public searchGraduates(key: string): void {
     console.log(key);
     const results: Graduated[] = [];
@@ -123,6 +137,10 @@ export class GraduatedComponent implements OnInit{
     if (mode === 'info'){
       this.findGraduated = graduated;
       button.setAttribute('data-target', '#infoAboutGraduatedModal');
+    }
+    if (mode === 'fullInfo'){
+      this.findInfoAboutGraduated = graduated;
+      button.setAttribute('data-target', '#fullInfoAboutGraduatedModal');
     }
     container.appendChild(button);
     button.click();

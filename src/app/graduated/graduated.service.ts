@@ -30,4 +30,8 @@ export class GraduatedService{
         return this.http.get<Graduated>(`${this.apiServerUrl}/graduates/info/${graduated}`);
     }
 
+    public fullInfoAboutGraduated(graduated: Graduated): Observable<Graduated>{
+        return this.http.get<Graduated>(`${this.apiServerUrl}/graduates/info/${graduated}`);
+    }
+
 }
