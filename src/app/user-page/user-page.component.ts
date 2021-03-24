@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { User } from './user';
 import { UserService } from './user.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { AuthService } from '../_services/auth.service';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatTableDataSource} from '@angular/material/table';
 
 @Component({
   selector: 'app-user-page',
@@ -14,11 +17,28 @@ export class UserPageComponent implements OnInit {
   public editUser: User;
   public deleteUser: User;
   public findUser: User;
+  displayedColumns: string[] = ['id', 'username', 'email', 'role'];
+  dataSource = new MatTableDataSource<User>();
 
-  constructor(private userService: UserService) { }
+  form: any = {
+    username: null,
+    email: null,
+    password: null
+  };
+  isSuccessful = false;
+  isSignUpFailed = false;
+  errorMessage = '';
+  
+  constructor(private userService: UserService, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.getUsers();
+  }
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
   }
 
   public getUsers(): void {
@@ -125,4 +145,19 @@ export class UserPageComponent implements OnInit {
     button.click();
   }
 
+  onSubmit(): void {
+    const { username, email, password } = this.form;
+
+    this.authService.register(username, email, password).subscribe(
+      data => {
+        console.log(data);
+        this.isSuccessful = true;
+        this.isSignUpFailed = false;
+      },
+      err => {
+        this.errorMessage = err.error.message;
+        this.isSignUpFailed = true;
+      }
+    );
+  }
 }
