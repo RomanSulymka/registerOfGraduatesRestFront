@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
-import { BoardAdminComponent } from './board-admin/board-admin.component';
+import { BoardAdminComponent, UpdateUserDialog } from './board-admin/board-admin.component';
 import { BoardModeratorComponent } from './board-moderator/board-moderator.component';
 import { RegisterComponent } from './register/register.component';
 import { WorkComponent } from './work/work.component';
@@ -40,7 +40,8 @@ import { MaterialModule } from './material/material.module';
     BoardAdminComponent,
     ProfileComponent,
     RegisterComponent,
-    WorkComponent
+    WorkComponent,
+    UpdateUserDialog
   ],
   imports: [
     AppRoutingModule,
@@ -59,7 +60,7 @@ import { MaterialModule } from './material/material.module';
     ReactiveFormsModule,
     BrowserModule, FormsModule, MatButtonModule, MatIconModule, AppRoutingModule, MatDialogModule, BrowserAnimationsModule,
     MaterialModule,
-    MatDialogModule,
+    MatDialogModule,    
   ],
   providers: [authInterceptorProviders,
   { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },
