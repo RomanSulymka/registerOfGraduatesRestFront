@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { User } from './user';
 import { UserService } from './user.service';
@@ -12,13 +12,13 @@ import {MatTableDataSource} from '@angular/material/table';
   template: `<h3>User Page</h3>`,
   templateUrl: './user-page.component.html'
 })
-export class UserPageComponent implements OnInit {
+export class UserPageComponent implements OnInit, AfterViewInit {
   public users: User[];
   public editUser: User;
   public deleteUser: User;
   public findUser: User;
-  displayedColumns: string[] = ['id', 'username', 'email', 'role'];
-  dataSource = new MatTableDataSource<User>();
+  public displayedColumns = ['id', 'username', 'email', 'role'];
+  public dataSource = new MatTableDataSource<User>();
 
   form: any = {
     username: null,
