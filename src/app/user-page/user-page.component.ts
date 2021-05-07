@@ -91,9 +91,9 @@ export class UserPageComponent implements OnInit, AfterViewInit {
     );
   }
 
-  public onFindUser(userId: number): void {
+  public onFindUser(userId: User): void {
     this.userService.findUser(userId).subscribe(
-      (response: void) => {
+      (response: User) => {
         console.log(response);
         this.getUsers();
       },
