@@ -43,6 +43,8 @@ export class BoardAdminComponent implements OnInit, AfterViewInit {
   private updateGraduateDialog = UpdateGraduateDialog;
   private deleteDialogComponent = DeleteDialogComponent;
   private deleteUserDialog = DeleteUserDialog;
+  private createUserComponent = CreateUserComponent;
+  private createGraduateComponent = CreateGraduateComponent;
 
   constructor(private userService: UserService, public dialog: MatDialog, private graduatedService: GraduatedService) { }
 
@@ -160,6 +162,18 @@ export class BoardAdminComponent implements OnInit, AfterViewInit {
    this.dialog.open(this.deleteDialogComponent, {
       data: {id: idGraduate, firstName: firstName, middleName: middleName, lastName: lastName, email: emailGraduate,
               jobTitle: jobTitle, gender: gender}
+    });
+  }
+
+  openAddDialog() {
+    this.dialog.open(this.createUserComponent, {
+      data: {User: {} }
+    });
+  }
+
+  openAddGraduateDialog() {
+    this.dialog.open(this.createGraduateComponent, {
+      data: {Graduate: {} }
     });
   }
 }
@@ -383,5 +397,79 @@ export class DeleteUserDialog {
         alert(error.message);
       }
     );
+  }
+}
+
+
+@Component({
+  templateUrl: 'create-user-dialog.html',
+})
+
+export class CreateUserComponent {
+  hide = true;
+  selectedValue = this.data.role;
+  rolesList;
+
+  constructor(public dialogRef: MatDialogRef<CreateUserComponent>,
+              @Inject(MAT_DIALOG_DATA) public data: User,public userService: UserService) { }
+
+  formControl = new FormControl('', [
+    Validators.required
+    // Validators.email,
+  ]);
+
+  getErrorMessage() {
+    return this.formControl.hasError('required') ? 'Required field' :
+      this.formControl.hasError('email') ? 'Not a valid email' :
+        '';
+  }
+
+  submit() {
+  // emppty stuff
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
+  public confirmAdd(): void {
+    this.userService.addUser(this.data);
+  }
+
+  GetRoleById(event) {
+    this.userService.findRole(Number(event.target.value)).subscribe(rolesList => {
+      this.rolesList = rolesList;
+    });
+  }
+}
+
+@Component({
+  templateUrl: 'create-graduate-dialog.html',
+})
+export class CreateGraduateComponent {
+  constructor(public dialogRef: MatDialogRef<CreateUserComponent>,
+              @Inject(MAT_DIALOG_DATA) public data: Graduated,public graduateService: GraduatedService) { }
+
+  formControl = new FormControl('', [
+    Validators.required
+    // Validators.email,
+  ]);
+
+  getErrorMessage() {
+    return this.formControl.hasError('required') ? 'Required field' :
+      this.formControl.hasError('email') ? 'Not a valid email' :
+        '';
+  }
+
+  submit() {
+  // emppty stuff
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
+  public confirmAdd(): void {
+    this.graduateService.addGraduated(this.data);
   }
 }
