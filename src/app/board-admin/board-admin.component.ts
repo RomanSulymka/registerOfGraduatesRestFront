@@ -42,6 +42,7 @@ export class BoardAdminComponent implements OnInit, AfterViewInit {
   private updateUserDialog = UpdateUserDialog;
   private updateGraduateDialog = UpdateGraduateDialog;
   private deleteDialogComponent = DeleteDialogComponent;
+  private deleteUserDialog = DeleteUserDialog;
 
   constructor(private userService: UserService, public dialog: MatDialog, private graduatedService: GraduatedService) { }
 
@@ -139,6 +140,13 @@ export class BoardAdminComponent implements OnInit, AfterViewInit {
     });
   }
 
+  // Delete User Data
+  public deleteUserRecord(id, username, password, email, role) {
+    this.dialog.open(this.deleteUserDialog, {
+      data: {id: id, username: username, password: password, email: email, role: role}
+    });
+  }
+
   //Update Graduate Data
   public editRecordGraduate(idGraduate, firstName, middleName, lastName, emailGraduate, jobTitle, gender) {
     this.dialog.open(this.updateGraduateDialog, {
@@ -147,6 +155,7 @@ export class BoardAdminComponent implements OnInit, AfterViewInit {
     });
   }
 
+  //Delete Graduate
   public deleteGraduate(idGraduate, firstName, middleName, lastName, emailGraduate, jobTitle, gender) {
    this.dialog.open(this.deleteDialogComponent, {
       data: {id: idGraduate, firstName: firstName, middleName: middleName, lastName: lastName, email: emailGraduate,
@@ -308,12 +317,71 @@ export class DeleteDialogComponent {
 
   constructor(public dialogRef: MatDialogRef<DeleteDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any, public graduateService: GraduatedService) { }
+  
+    public graduates: Graduated[];
+
+    public getGraduates(): void {
+    this.graduateService.getGraduates().subscribe(
+      (response: Graduated[]) => {
+        this.graduates = response;
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+  }
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
+  public confirmDelete(userId: number): void {
+    this.graduateService.deleteGraduated(userId).subscribe(
+      (response: void) => {
+        console.log(response);
+        this.getGraduates();
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+  }
+}
+
+@Component({
+  selector: 'user-delete.dialog',
+  templateUrl: 'user-delete-dialog.html',
+})
+export class DeleteUserDialog {
+
+  constructor(public dialogRef: MatDialogRef<DeleteUserDialog>,
+              @Inject(MAT_DIALOG_DATA) public data: any, public userService: UserService) { }
+  
+  public users: User[];
 
   onNoClick(): void {
     this.dialogRef.close();
   }
 
-  confirmDelete(): void {
-    this.graduateService.deleteGraduated(this.data.id);
+  public getUsers(): void {
+    this.userService.getUsers().subscribe(
+      (response: User[]) => {
+        this.users = response;
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+  }
+
+  public confirmDelete(userId: number): void {
+    this.userService.deleteUser(userId).subscribe(
+      (response: void) => {
+        console.log(response);
+        this.getUsers();
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
   }
 }
