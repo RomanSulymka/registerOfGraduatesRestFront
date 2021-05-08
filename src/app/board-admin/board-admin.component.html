@@ -131,7 +131,8 @@
         <ng-container matColumnDef="updateGraduate">
           <th mat-header-cell *matHeaderCellDef> Update </th>
           <td mat-cell *matCellDef="let element">
-            <button mat-icon-button color="accent">
+            <button mat-icon-button color="accent" (click)="editRecordGraduate(element.id, element.firstName, element.middleName,
+                                                            element.lastName, element.email, element.jobTitle, element.gender)">
                 <mat-icon class="mat-18">update</mat-icon>
             </button>
           </td>
