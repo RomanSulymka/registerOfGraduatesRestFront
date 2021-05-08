@@ -41,6 +41,7 @@ export class BoardAdminComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   private updateUserDialog = UpdateUserDialog;
   private updateGraduateDialog = UpdateGraduateDialog;
+  private deleteDialogComponent = DeleteDialogComponent;
 
   constructor(private userService: UserService, public dialog: MatDialog, private graduatedService: GraduatedService) { }
 
@@ -143,6 +144,13 @@ export class BoardAdminComponent implements OnInit, AfterViewInit {
     this.dialog.open(this.updateGraduateDialog, {
       data: {id: idGraduate, firstName: firstName, middleName: middleName, lastName: lastName, email: emailGraduate,
              jobTitle: jobTitle, gender: gender, dataSource: this.dataSource}
+    });
+  }
+
+  public deleteGraduate(idGraduate, firstName, middleName, lastName, emailGraduate, jobTitle, gender) {
+   this.dialog.open(this.deleteDialogComponent, {
+      data: {id: idGraduate, firstName: firstName, middleName: middleName, lastName: lastName, email: emailGraduate,
+              jobTitle: jobTitle, gender: gender}
     });
   }
 }
@@ -289,5 +297,23 @@ export class UpdateGraduateDialog {
         alert(error.message);
       }
     );
+  }
+}
+
+@Component({
+  selector: 'app-delete.dialog',
+  templateUrl: 'delete-dialog.html',
+})
+export class DeleteDialogComponent {
+
+  constructor(public dialogRef: MatDialogRef<DeleteDialogComponent>,
+              @Inject(MAT_DIALOG_DATA) public data: any, public graduateService: GraduatedService) { }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
+  confirmDelete(): void {
+    this.graduateService.deleteGraduated(this.data.id);
   }
 }

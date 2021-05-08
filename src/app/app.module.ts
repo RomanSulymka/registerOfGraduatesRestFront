@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
-import { BoardAdminComponent, UpdateUserDialog, UpdateGraduateDialog } from './board-admin/board-admin.component';
+import { BoardAdminComponent, UpdateUserDialog, UpdateGraduateDialog, DeleteDialogComponent } from './board-admin/board-admin.component';
 import { BoardModeratorComponent } from './board-moderator/board-moderator.component';
 import { RegisterComponent } from './register/register.component';
 import { WorkComponent } from './work/work.component';
@@ -42,7 +42,8 @@ import { MaterialModule } from './material/material.module';
     RegisterComponent,
     WorkComponent,
     UpdateUserDialog,
-    UpdateGraduateDialog
+    UpdateGraduateDialog,
+    DeleteDialogComponent
   ],
   imports: [
     AppRoutingModule,
