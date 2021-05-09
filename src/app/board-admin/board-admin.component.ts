@@ -10,6 +10,7 @@ import {FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { NgForm } from '@angular/forms';
 import { Graduated } from '../graduated/graduated';
 import { GraduatedService } from '../graduated/graduated.service';
+import { AuthService } from '../_services/auth.service';
 
 interface Role{
   value: string;
@@ -411,8 +412,16 @@ export class CreateUserComponent {
   rolesList;
 
   constructor(public dialogRef: MatDialogRef<CreateUserComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: User,public userService: UserService) { }
-
+              @Inject(MAT_DIALOG_DATA) public data: User,public userService: UserService, private authService: AuthService) { }
+  form: any = {
+    username: null,
+    email: null,
+    password: null
+  };
+  isSuccessful = false;
+  isSignUpFailed = false;
+  errorMessage = '';
+  
   formControl = new FormControl('', [
     Validators.required
     // Validators.email,
@@ -441,6 +450,22 @@ export class CreateUserComponent {
       this.rolesList = rolesList;
     });
   }
+
+  onSubmit(): void {
+    const { username, email, password } = this.form;
+
+    this.authService.register(username, email, password).subscribe(
+      data => {
+        console.log(data);
+        this.isSuccessful = true;
+        this.isSignUpFailed = false;
+      },
+      err => {
+        this.errorMessage = err.error.message;
+        this.isSignUpFailed = true;
+      }
+    );
+  }
 }
 
 @Component({
@@ -448,7 +473,8 @@ export class CreateUserComponent {
 })
 export class CreateGraduateComponent {
   constructor(public dialogRef: MatDialogRef<CreateUserComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: Graduated,public graduateService: GraduatedService) { }
+              @Inject(MAT_DIALOG_DATA) public data: Graduated, public graduateService: GraduatedService) { }
+  public graduates: Graduated[];
 
   formControl = new FormControl('', [
     Validators.required
@@ -469,7 +495,26 @@ export class CreateGraduateComponent {
     this.dialogRef.close();
   }
 
-  public confirmAdd(): void {
-    this.graduateService.addGraduated(this.data);
+  public getGraduates(): void {
+    this.graduateService.getGraduates().subscribe(
+      (response: Graduated[]) => {
+        this.graduates = response;
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+  }
+
+  public onAddGraduated(): void {
+    this.graduateService.addGraduated(this.data).subscribe(
+      (response: Graduated) => {
+        console.log(response);
+        this.getGraduates();
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
   }
 }
