@@ -1,10 +1,12 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, Inject, ViewEncapsulation } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Graduated } from './graduated';
 import { GraduatedService } from './graduated.service';
 import { ActivatedRoute, Router, RouterLinkActive, Routes } from '@angular/router';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-root',
