@@ -2,116 +2,51 @@
    <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
    <li class="breadcrumb-item active">Users</li>
  </ol>
-      <!-- Users list table -->
- <div class="card" style="margin: 2%; border-radius: 30px; box-shadow: 0.4em 0.4em 5px rgba(122,122,122,0.5);	" id="main-container">
-   <div class="card-body">
-     <h2 class="card-title">Users List</h2>
-     <div class="card-text">
-       <form class="form-inline">
-         <div class="form-group">
-           <label for="title">Username:</label>
-           <input id="title" name="title" type="search" class="form-control ml-2 mr-2" (ngModelChange)="searchUsers(key.value)" #key="ngModel" ngModel
-           name="key" placeholder="Search Users...">
-         </div>
- 
-         <button class="btn btn-primary">Search</button>
-         <a (click)="onOpenModal(null, 'add')" data-toggle="modal" data-target="#exampleModal"class="btn btn-default">New <span class="sr-only">(current)</span></a>
-       </form>
-     </div>
-     <div>
-       <div class="alert alert-m-2"></div>
-       <div class="table-responsive" *ngFor="let user of users">
-         <table class="table table-centered table-hover mb-0" id="datatable">
-           <thead>
-           <tr>
-             <th class="border-top-0" scope="col">Id</th>
-             <th class="border-top-0" scope="col">Name</th>
-             <th class="border-top-0" scope="col">E-mail</th>
-             <th class="border-top-0" scope="col">Role</th>
-             <th class="border-top-0" scope="col" style="width:120px"></th>
-           </tr>
-           </thead>
-           <tbody>
-           <tr>
-             <td>{{user?.id}}</td>
-             <td>{{user?.username}}</td>
-             <td>{{user?.email}}</td>
-             <a *ngFor="let role of user.roles">
-             <td>{{ role.name }}</td>
-             </a>
-             <td style="white-space: nowrap"> 
-               <a (click)="onOpenModal(user, 'edit')" class="btn btn-secondary">Edit</a>&nbsp;
-               <button (click)="onOpenModal(user, 'delete')" class="btn btn-danger">Delete</button>
-             </td>
-           </tr>
-           </tbody>
-         </table>
-       </div>
-     </div>
- </div>
 
-  <!-- Update User -->
-  <div class="modal fade" id="updateUserModal" tabindex="-1" role="dialog" aria-labelledby="userEditUserLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-       <div class="modal-content">
-          <div class="modal-header">
-             <h5 class="modal-title" id="userEditUserLabel">Edit User {{editUser?.username}}</h5>
-             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-             <span aria-hidden="true">&times;</span>
-             </button>
-          </div>
-          <div class="modal-body">
-             <form #editForm="ngForm" *ngIf="!isSuccessful"
-             name="form"
-             (ngSubmit)="f.form.valid && onSubmit()"
-             #f="ngForm"
-             novalidate>
-                <div class="form-group">
-                   <a for="username">Username</a>
-                   <input type="text" ngModel="{{editUser?.username}}" name="username" class="form-control" id="username" aria-describedby="emailHelp" placeholder="username">
-                </div>
-                <div class="form-group">
-                  <label for="old-password">Old Password</label>
-                  <input type="text" ngModel name="old-password" class="form-control" id="old-password" aria-describedby="emailHelp" placeholder="old password">
-               </div>
-               <div class="form-group">
-                <label for="password">New Password</label>
-                <input
-                type="password"
-                class="form-control"
-                name="password"
-                [(ngModel)]="form.password"
-                required
-                minlength="6"
-                #password="ngModel"
-              />
-              <div class="alert-danger" *ngIf="password.errors && f.submitted">
-                <div *ngIf="password.errors.required">Password is required</div>
-                <div *ngIf="password.errors.minlength">
-                  Password must be at least 6 characters
-                </div>
-              </div>
-             </div>
-                <input type="hidden" ngModel="{{editUser?.id}}" name="id" class="form-control" id="id" placeholder="Email">
-                <input type="hidden" ngModel="{{editUser?.id}}" name="userCode" class="form-control" id="userCode" placeholder="Email">
-                <div class="form-group">
-                   <label for="email">Email Address</label>
-                   <input type="email" ngModel="{{editUser?.email}}" name="email" class="form-control" id="email" placeholder="Email">
-                </div>
-                <div class="modal-footer">
-                   <button type="button" id="" data-dismiss="modal" class="btn btn-secondary">Close</button>
-                   <button (click)="onUpdateUser(editForm.value)" data-dismiss="modal" class="btn btn-primary" >Save changes</button>
-                </div>
-             </form>
-          </div>
-       </div>
+ <mat-tab-group mat-align-tabs="start">
+  
+  <!-- Users Page -->
+  <mat-tab label="Users" >
+    <div fxLayout fxLayoutAlign="center center">
+      <mat-form-field appearance="legacy" fxFlex="40%">
+        <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Find user">
+      </mat-form-field>
     </div>
-  </div>
 
-   <!-- Notification for no users -->
-<div *ngIf="users?.length == 0" class="col-lg-12 col-md-12 col-xl-12">
-   <div class="alert alert-info" role="alert">
-     <h4 class="alert-heading">NO USERS!</h4>
-     <p>No Users were found.</p>
-   </div>
-</div>
+    <!-- Sorting -->
+    <div class="mat-elevation-z5" >
+  <table mat-table [dataSource]="dataSource" matSort matSortStart="desc" (matSortChange)="customSort($event)">
+
+    <!-- Column Id -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+
+    <!-- Column Username -->
+    <ng-container matColumnDef="username">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Username </th>
+      <td mat-cell *matCellDef="let element"> {{element.username}} </td>
+    </ng-container>
+   
+    <!-- Column Email -->
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> E-mail </th>
+      <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+    </ng-container>
+   
+    <!-- Column Role -->
+    <ng-container matColumnDef="role">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Role </th>
+      <td mat-cell *matCellDef="let element"> 
+        <span *ngFor="let role of element.roles">{{role.name}}</span>{{element.role}} </td>
+    </ng-container>
+   
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+     <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 15, 20]">
+     </mat-paginator>
+  </div>
+</mat-tab>
+</mat-tab-group>
