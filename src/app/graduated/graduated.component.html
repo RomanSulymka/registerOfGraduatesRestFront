@@ -271,6 +271,14 @@
                   <div class="form-group" style="border-bottom: 2px solid #ADC2CE;" *ngFor="let work of findInfoAboutGraduated?.works; let i =index">
                      <label type="text" name="gender" id="company" name="company" placeholder="company" *ngIf ="i>=findInfoAboutGraduated?.works.length -1">Curently Company: {{work?.company}}</label>
                   </div>
+                  <div class="form-group" style="border-bottom: 2px solid #ADC2CE;">
+                     <label for="updated">Created </label>
+                     <label type="text" name="updated" id="updated" name="updated" placeholder="updated">: {{findInfoAboutGraduated?.created}}</label>
+                  </div>
+                  <div class="form-group" style="border-bottom: 2px solid #ADC2CE;">
+                     <label for="updated">Last Update </label>
+                     <label type="text" name="updated" id="updated" name="updated" placeholder="updated">: {{findInfoAboutGraduated?.updated}}</label>
+                  </div>
                </form>
                 Work Experiance:
                <table style="width: auto; border: 20px; margin-top: 10px;" class="table">
