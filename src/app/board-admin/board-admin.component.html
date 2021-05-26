@@ -56,7 +56,7 @@
         </button>
       </td>
     </ng-container>
- 
+
     <!-- Action Delete -->
     <ng-container matColumnDef="delete">
         <th mat-header-cell *matHeaderCellDef> Delete </th>
@@ -88,7 +88,7 @@
       </button>
     </div>
     <div class="mat-elevation-z5" >
-      <table mat-table [dataSource]="dataSourceGraduate" matSort matSortStart="desc" (matSortChange)="customSort($event)">
+      <table mat-table [dataSource]="dataSourceGraduate" matSort matSortStart="desc" (matSortChange)="customSortGraduate($event)">
       
         <!-- Column Id -->    
         <ng-container matColumnDef="idGraduate">
@@ -122,8 +122,12 @@
       
         <!-- Column Job Title -->
         <ng-container matColumnDef="jobTitle">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Job Title </th>
-          <td mat-cell *matCellDef="let element"> {{element.jobTitle}} </td>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Company </th>
+          <td mat-cell *matCellDef="let element"> 
+            <ng-container  *ngFor="let work of element.works; let i =index">
+              <i *ngIf ="i>=element.works.length -1">
+              {{work.company}}</i>
+              </ng-container>
         </ng-container>
 
         <!-- Column Gender -->
@@ -132,13 +136,34 @@
           <td mat-cell *matCellDef="let element"> {{element.gender}} </td>
         </ng-container>
 
+        <!-- Action Update -->
+        <ng-container matColumnDef="workButton">
+          <th mat-header-cell *matHeaderCellDef> Add work </th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-icon-button color="primary" (click)="openWork(element.id, element.works)">
+              <mat-icon>work_outline</mat-icon>
+            </button>
+          </td>
+        </ng-container>   
+
+
+        <!-- Action Update -->
+        <ng-container matColumnDef="updateWork">
+          <th mat-header-cell *matHeaderCellDef> Update Works</th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-icon-button color="primary" (click)="openUpdateWork(element.id, element.works)">
+              <mat-icon>mode_edit</mat-icon>
+            </button>
+          </td>
+        </ng-container> 
+        
         <!-- Action Update 
             TODO: Must add (click) -->
         <ng-container matColumnDef="updateGraduate">
           <th mat-header-cell *matHeaderCellDef> Update </th>
           <td mat-cell *matCellDef="let element">
-            <button mat-icon-button color="accent" (click)="editRecordGraduate(element.id, element.firstName, element.middleName,
-                                                            element.lastName, element.email, element.jobTitle, element.gender)">
+            <button mat-icon-button color="warn" (click)="editRecordGraduate(element.id, element.firstName, element.middleName,
+                                                            element.lastName, element.email, element.works, element.gender, element.imageUrl)">
                 <mat-icon class="mat-18">update</mat-icon>
             </button>
           </td>
@@ -150,7 +175,7 @@
             <th mat-header-cell *matHeaderCellDef> Delete </th>
             <td mat-cell *matCellDef="let element">
               <button mat-icon-button color="warn" (click)="deleteGraduate(element.id, element.firstName, element.middleName,
-                                                            element.lastName, element.email, element.jobTitle, element.gender)">
+                                                            element.lastName, element.email, element.jobTitle, element.gender, element.imageUrl)">
                   <mat-icon class="mat-18">delete</mat-icon>
               </button>
             </td>

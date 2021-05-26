@@ -11,6 +11,8 @@ import { NgForm } from '@angular/forms';
 import { Graduated } from '../graduated/graduated';
 import { GraduatedService } from '../graduated/graduated.service';
 import { AuthService } from '../_services/auth.service';
+import { WorkService } from '../work/work.service';
+import { Work } from '../work/work';
 
 interface Role{
   value: string;
@@ -30,13 +32,13 @@ export class BoardAdminComponent implements OnInit, AfterViewInit {
   password: string;
   email: string;
   role: string;
+  works: any;
   nav_position: string = 'end';
   public displayedColumns = ['id', 'username', 'email', 'role', 'update', 'delete'];
-  public displayedColumnsGraduate = ['idGraduate', 'firstName', 'middleName', 'lastName', 'emailGraduate', 'jobTitle', 'gender', 'updateGraduate', 'deleteGraduate'];
+  public displayedColumnsGraduate = ['idGraduate', 'firstName', 'middleName', 'lastName', 'emailGraduate', 'jobTitle', 'gender', 'workButton', 'updateWork', 'updateGraduate', 'deleteGraduate'];
   public dataSource = new MatTableDataSource<User>();
   public dataSourceGraduate = new MatTableDataSource<Graduated>();
   public users: User[];
-  public editUser: User;
   public deleteUser: User;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -46,6 +48,8 @@ export class BoardAdminComponent implements OnInit, AfterViewInit {
   private deleteUserDialog = DeleteUserDialog;
   private createUserComponent = CreateUserComponent;
   private createGraduateComponent = CreateGraduateComponent;
+  private openGraduateWorksDialog = OpenGraduateWorksDialog;
+  private openUpdateWorksDialog = OpenUpdateWorksDialog;
 
   constructor(private userService: UserService, public dialog: MatDialog, private graduatedService: GraduatedService) { }
 
@@ -151,10 +155,10 @@ export class BoardAdminComponent implements OnInit, AfterViewInit {
   }
 
   //Update Graduate Data
-  public editRecordGraduate(idGraduate, firstName, middleName, lastName, emailGraduate, jobTitle, gender) {
+  public editRecordGraduate(idGraduate, firstName, middleName, lastName, emailGraduate, works, gender, imageUrl) {
     this.dialog.open(this.updateGraduateDialog, {
       data: {id: idGraduate, firstName: firstName, middleName: middleName, lastName: lastName, email: emailGraduate,
-             jobTitle: jobTitle, gender: gender, dataSource: this.dataSource}
+             works: works, gender: gender, imageUrl: imageUrl, dataSource: this.dataSource}
     });
   }
 
@@ -175,6 +179,18 @@ export class BoardAdminComponent implements OnInit, AfterViewInit {
   openAddGraduateDialog() {
     this.dialog.open(this.createGraduateComponent, {
       data: {Graduate: {} }
+    });
+  }
+
+  public openWork(){
+    this.dialog.open(this.openGraduateWorksDialog, {
+      data: {Graduate: {} }
+    });
+  }
+
+  public openUpdateWork(idGraduate, works){
+    this.dialog.open(this.openUpdateWorksDialog, {
+      data: {id: idGraduate, works: works}
     });
   }
 }
@@ -266,8 +282,8 @@ export class UpdateUserDialog {
 })
 export class UpdateGraduateDialog {
   constructor(public dialogRef: MatDialogRef<UpdateGraduateDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: Graduated, public graduatedService: GraduatedService) {}
-
+    @Inject(MAT_DIALOG_DATA) public data: Graduated, public graduatedService: GraduatedService, public dialog: MatDialog) {}
+    private openGraduateWorksDialog = OpenGraduateWorksDialog;
     public dataSource = new MatTableDataSource<Graduated>();
     public users: Graduated[];
     hide = true;
@@ -307,12 +323,8 @@ export class UpdateGraduateDialog {
   this.dialogRef.close();
   }
 
-  stopEdit(): void {
-  this.graduatedService.updateGraduated(this.data);
-  }
-
-  public updateGraduate(user: Graduated): void {
-    this.graduatedService.updateGraduated(user).subscribe(
+  public updateGraduate(graduate: Graduated): void {
+    this.graduatedService.updateGraduated(graduate).subscribe(
       (response: Graduated) => {
         console.log(response);
         this.getGraduates();
@@ -475,7 +487,7 @@ export class CreateGraduateComponent {
   constructor(public dialogRef: MatDialogRef<CreateUserComponent>,
               @Inject(MAT_DIALOG_DATA) public data: Graduated, public graduateService: GraduatedService) { }
   public graduates: Graduated[];
-
+  public work: any;
   formControl = new FormControl('', [
     Validators.required
     // Validators.email,
@@ -517,4 +529,171 @@ export class CreateGraduateComponent {
       }
     );
   }
+}
+
+@Component({
+  templateUrl: 'open-graduate-works-dialog.html',
+})
+export class OpenGraduateWorksDialog{
+  constructor(public dialogRef: MatDialogRef<CreateUserComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: Work, @Inject(MAT_DIALOG_DATA) public dataGraduate: Graduated, public graduateService: GraduatedService, public workService: WorkService) { }
+    public graduates: Graduated[];
+    public works: {
+      id?: number;
+      company?: string;
+      position?: string;
+      startWork?: string;
+      endWork?: string;
+      graduatedId: number;
+    };
+    public allWorks: Work[];
+    public work: Work;
+    private graduateId: number;
+    private workId: number;
+    public graduated: Graduated;
+    formControl = new FormControl('', [
+      Validators.required
+      // Validators.email,
+    ]);
+  
+    getErrorMessage() {
+      return this.formControl.hasError('required') ? 'Required field' :
+        this.formControl.hasError('email') ? 'Not a valid email' :
+          '';
+    }
+  
+    submit() {
+    // emppty stuff
+    }
+  
+    onNoClick(): void {
+      this.dialogRef.close();
+    }
+  
+    public getGraduates(): void {
+      this.graduateService.getGraduates().subscribe(
+        (response: Graduated[]) => {
+          this.graduates = response;
+        },
+        (error: HttpErrorResponse) => {
+          alert(error.message);
+        }
+      );
+    }
+  
+    public getWorks(): void{
+      this.workService.getWorks().subscribe(
+        (response: Work[]) => {
+          this.allWorks = response;
+        },
+        (error: HttpErrorResponse) => {
+          alert(error.message);
+        }
+      );
+    }
+
+    public addWork(graduateId: number): void {
+      this.workService.addWork(graduateId, this.data).subscribe(
+        (response: Work) => {
+          console.log(response);
+          this.getGraduates();
+        },
+        (error: HttpErrorResponse) => {
+          alert(error.message);
+        }
+      );
+    }
+
+    public updateWork(): void {
+      this.workService.updateWork(this.graduateId, this.workId, this.work).subscribe(
+        (response: Work) => {
+          console.log(response);
+          this.getWorks();
+        },
+        (error: HttpErrorResponse) => {
+          alert(error.message)
+        }
+      );
+    }
+}
+
+@Component({
+  templateUrl: 'open-update-works-dialog.html',
+})
+export class OpenUpdateWorksDialog{
+  constructor(public dialogRef: MatDialogRef<OpenUpdateWorksDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: Work, @Inject(MAT_DIALOG_DATA) public dataGraduate: Graduated, public graduateService: GraduatedService, public workService: WorkService) { }
+    public graduates: Graduated[];
+    public displayedColumns = ['id', 'company', 'position', 'startWork', 'endWork', 'update', 'delete'];
+    public dataSource = new MatTableDataSource<Work>();
+    public works: {
+      id?: number;
+      company?: string;
+      position?: string;
+      startWork?: string;
+      endWork?: string;
+      graduatedId: number;
+    };
+    public allWorks: Work[];
+    public work: Work;
+    private graduateId: number;
+    private workId: number;
+    public graduated: Graduated;
+    formControl = new FormControl('', [
+      Validators.required
+      // Validators.email,
+    ]);
+  
+    ngOnInit() {
+      this.getWorks();
+      this.getGraduates();
+    }
+
+    getErrorMessage() {
+      return this.formControl.hasError('required') ? 'Required field' :
+        this.formControl.hasError('email') ? 'Not a valid email' :
+          '';
+    }
+  
+    submit() {
+    // emppty stuff
+    }
+  
+    onNoClick(): void {
+      this.dialogRef.close();
+    }
+  
+    public getGraduates(): void {
+      this.graduateService.getGraduates().subscribe(
+        (response: Graduated[]) => {
+          this.graduates = response;
+        },
+        (error: HttpErrorResponse) => {
+          alert(error.message);
+        }
+      );
+    }
+  
+    public getWorks(): void{
+      this.workService.getWorks().subscribe(
+        (response: Work[]) => {
+          this.allWorks = response;
+        },
+        (error: HttpErrorResponse) => {
+          alert(error.message);
+        }
+      );
+    }
+
+    public updateWork(): void {
+      this.workService.updateWork(this.graduateId, this.workId, this.work).subscribe(
+        (response: Work) => {
+          console.log(response);
+          this.getWorks();
+        },
+        (error: HttpErrorResponse) => {
+          alert(error.message)
+        }
+      );
+    }
 }

@@ -50,7 +50,23 @@
               <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
             </mat-form-field>
           </div>
-          
+
+         <!--Textarea for demo purposes-->
+         <div class="form">
+          <mat-form-field color="accent">
+            <textarea matInput #input class="form-control" placeholder="graduationYearFromBachelor" [(ngModel)]="data.graduationYearFromBachelor" name="graduationYearFromBachelor" required ></textarea>
+            <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
+        </div>
+
+         <!--Textarea for demo purposes-->
+         <div class="form">
+          <mat-form-field color="accent">
+            <textarea matInput #input class="form-control" placeholder="imageUrl" [(ngModel)]="data.imageUrl" name="imageUrl" required ></textarea>
+            <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
+        </div>
+        
       <div mat-dialog-actions>
         <button mat-button [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="onAddGraduated()">Save</button>
         <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
