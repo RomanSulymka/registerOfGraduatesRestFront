@@ -1,5 +1,6 @@
 <div id="app">
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <img _ngcontent-voc-c11="" alt="Angular Logo" src="http://is.nuft.edu.ua/img/logo/acs.png" width="40">
      <a href="/#" class="navbar-brand">Register Of Graduates</a>
      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
        <span class="navbar-toggler-icon"></span>
@@ -45,4 +46,32 @@
 
 <div class="container">
   <router-outlet></router-outlet>
+</div>
+<div style="background-color: #3f51b5;" class="footer" #footer>
+  <div class="about">
+    <button mat-raised-button color="primary" style="margin-top: 20px; margin-left: 20px;">About creator</button>
+  </div>
+  <div class="center" style="text-align: center;">
+  <p> Code licensed under an <a href="license" title="License text">MIT-style License</a>. Created by @Roman Sulymka.
+  </p>
+</div>
+<div class="example-button-row">
+  <div class="example-flex-container"  style="margin-left: 1650px;">
+    <div class="example-button-container">
+      <button mat-mini-fab color="primary" aria-label="Example icon button with a menu icon">
+        <mat-icon>facebook</mat-icon>
+      </button>
+    </div>
+    <div class="example-button-container">
+      <button mat-mini-fab color="warn" aria-label="Example icon button with a filter list icon">
+        <span class="iconify" data-icon="mdi-instagram" data-inline="false" data-width="24"></span>
+      </button>
+    </div>
+    <div class="example-button-container">
+      <button mat-mini-fab color="accent" aria-label="Example icon button with a plus one icon" ng-href="http://is.nuft.edu.ua/">
+        <mat-icon>public</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>
 </div>

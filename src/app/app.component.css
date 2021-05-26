@@ -1,0 +1,103 @@
+.footer {
+    width: 100%;
+    color: white;
+    margin: 0px;
+    flex-grow: 0;
+    flex-shrink: 0;
+ }
+ .example-button-row {
+    display: table-cell;
+  }
+  .example-button-row .mat-button-base {
+    margin: 8px 8px 8px 0;
+  }
+  
+  .example-flex-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  .example-button-container {
+    display: flex;
+    justify-content: center;
+    width: 70px;
+  }
+ footer aio-footer p {
+    text-align: center;
+    margin: 10px auto 5px;
+}
+footer aio-footer > * {
+    color: #fff;
+    max-width: 50em;
+}
+p {
+    margin: 1em 0;
+}
+
+.docs-footer-copyright[_ngcontent-wld-c79] {
+    margin-top: 0;
+}
+.docs-footer-copyright[_ngcontent-wld-c79] {
+    display: flex;
+    flex: 1;
+    justify-content: flex-end;
+    flex-direction: column;
+    min-width: 225px;
+    margin-top: 16px;
+}
+.docs-footer[_ngcontent-wld-c79] {
+    font-size: 12px;
+}
+.docs-footer {
+    color: #fff;
+}
+body {
+    font-family: Roboto,Helvetica Neue Light,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif;
+}
+.docs-footer-copyright[_ngcontent-wld-c79] > div[_ngcontent-wld-c79] {
+    display: flex;
+    flex-direction: column;
+    align-self: flex-end;
+    text-align: center;
+}
+.docs-footer[_ngcontent-wld-c79] {
+    font-size: 12px;
+}
+.docs-footer {
+    color: #fff;
+}
+body {
+    font-family: Roboto,Helvetica Neue Light,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif;
+}
+.docs-footer-copyright[_ngcontent-wld-c79] > div[_ngcontent-wld-c79] {
+    text-align: center;
+}
+.docs-footer[_ngcontent-wld-c79] {
+    font-size: 12px;
+}
+.docs-footer {
+    color: #fff;
+}
+body {
+    font-family: Roboto,Helvetica Neue Light,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif;
+}
+a[_ngcontent-wld-c79] {
+    text-decoration: none;
+    color: inherit;
+}
+.docs-footer-copyright[_ngcontent-wld-c79] > div[_ngcontent-wld-c79] {
+    text-align: center;
+}
+.docs-footer[_ngcontent-wld-c79] {
+    font-size: 12px;
+}
+.docs-footer-copyright[_ngcontent-wld-c79] > div[_ngcontent-wld-c79] {
+    text-align: center;
+}
+.docs-footer[_ngcontent-wld-c79] {
+    font-size: 12px;
+}
+.docs-footer {
+    color: #fff;
+}
