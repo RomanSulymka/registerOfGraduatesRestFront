@@ -32,32 +32,6 @@ export class WorkComponent implements OnInit {
     );
   }
 
-  public onAddWork(addForm: NgForm): void {
-    document.getElementById('add-work-form').click();
-    this.workService.addWork(addForm.value).subscribe(
-      (response: Work) => {
-        console.log(response);
-        this.getWorks();
-        addForm.reset();
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-        addForm.reset();
-      }
-    );
-  }
-
-  public onUpdateWork(work: Work): void {
-    this.workService.updateWork(work).subscribe(
-      (response: Work) => {
-        console.log(response);
-        this.getWorks();
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    );
-  }
 
   public onDeleteWork(workId: number): void {
     this.workService.deleteWork(workId).subscribe(

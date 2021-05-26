@@ -4,5 +4,5 @@ export interface Work{
     company: string;
     startWork: string;
     endWork: string;
-    graduated: string;
+    graduatedId: number;
 }
