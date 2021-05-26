@@ -11,7 +11,14 @@ export interface Graduated {
     graduationYearFromBachelor: string;
     graduationYearFromMaster: string;
     graduationYearFromOrkSpecialist: string;
-    works: string;
+    works: {
+        id: number;
+        company: string;
+        position: string;
+        startWork: string;
+        endWork: string;
+        graduatedId: number;
+      };
     created: string;
     updated: string;
 }

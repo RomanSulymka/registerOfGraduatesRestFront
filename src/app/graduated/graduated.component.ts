@@ -37,45 +37,6 @@ export class GraduatedComponent implements OnInit{
     );
   }
 
-  public onAddGraduated(addForm: NgForm): void {
-    document.getElementById('add-graduated-form').click();
-    this.graduatedService.addGraduated(addForm.value).subscribe(
-      (response: Graduated) => {
-        console.log(response);
-        this.getGraduates();
-        addForm.reset();
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-        addForm.reset();
-      }
-    );
-  }
-
-  public onUpdateGraduated(graduated: Graduated): void {
-    this.graduatedService.updateGraduated(graduated).subscribe(
-      (response: Graduated) => {
-        console.log(response);
-        this.getGraduates();
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    );
-  }
-
-  public onDeleteGraduated(graduatedId: number): void {
-    this.graduatedService.deleteGraduated(graduatedId).subscribe(
-      (response: void) => {
-        console.log(response);
-        this.getGraduates();
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    );
-  }
-
   public onInfoAboutGraduated(graduated: Graduated): void {
     this.graduatedService.infoAboutGraduated(graduated).subscribe(
       (response: Graduated) => {
@@ -123,19 +84,6 @@ export class GraduatedComponent implements OnInit{
     button.type = 'button';
     button.style.display = 'none';
     button.setAttribute('data-toggle', 'modal');
-    if (mode === 'add'){
-     button.setAttribute('data-target', '#addGraduatedModal');
-    }
-
-    if (mode === 'edit'){
-      this.editGraduated = graduated;
-      button.setAttribute('data-target', '#updateGraduatedModal');
-    }
-
-    if (mode === 'delete'){
-      this.deleteGraduated = graduated;
-      button.setAttribute('data-target', '#deleteGraduatedModal');
-    }
     if (mode === 'info'){
       this.findGraduated = graduated;
       button.setAttribute('data-target', '#infoAboutGraduatedModal');

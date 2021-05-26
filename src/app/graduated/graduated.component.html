@@ -18,7 +18,7 @@
     <div class="row">
        <!--Default md-6 xl-3 -->
         <div *ngFor="let graduated of graduates" class="col-md-6 col-xl-6">
-            <div class="card m-b-30" style="border-radius: 30px;">
+            <div class="card m-b-30" style="border-radius: 30px; height: 371px;">
                 <div class="card-body row">
                     <div class="col-6">
                         <a href=""><img src="{{graduated?.imageUrl}}" alt="" class="img-fluid rounded-circle w-60"></a>
@@ -33,8 +33,10 @@
                     <li class="list-group-item"><i class="material-icons float-right icon-sex">face</i>Sex: {{graduated?.gender}}</li>
                     <li class="list-group-item"><i class="material-icons float-right icon-blue">school</i>
                      Graduation year: {{graduated?.graduationYearFromBachelor}}</li>
-                    <li class="list-group-item" *ngFor="let work of graduated.works; let i =index"> <i *ngIf ="i>=graduated.works.length -1" >Company: {{work?.company }}</i></li>
+                    <p  class="m-0" *ngFor="let work of graduated.works; let i =index"> <i style="margin-left: 18px;" *ngIf ="i>=graduated.works.length -1" >
+                       Company: {{work.company }}</i></p>
                 </ul>
+
                 <div class="card-body">
                     <div class="float-right btn-group btn-group-sm">
                      <!-- <a (click)="onOpenModal(graduated, 'edit')" class="btn btn-primary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
@@ -50,134 +52,7 @@
                 </div>
             </div>
         </div>
-       <!-- Add Graduated Modal -->
-    <div class="modal fade" id="addGraduatedModal" tabindex="-1" role="dialog" aria-labelledby="addGraduatedModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-         <div class="modal-header">
-            <h5 class="modal-title" id="addGraduatedModalLabel">Add Graduated</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-         </div>
-         <div class="modal-body">
-            <form #addForm="ngForm" (ngSubmit)="onAddGraduated(addForm)">
-            <div class="form-group">
-               <label for="firstName">First Name</label>
-               <input type="text" ngModel name="firstName" class="form-control" id="firstName" placeholder="First Name" required>
-            </div>
-            <div class="form-group">
-               <label for="middleName">Middle Name</label>
-               <input type="text" ngModel name="middleName" class="form-control" id="middleName" placeholder="Middle Name" required>
-            </div>
-            <div class="form-group">
-               <label for="lastName">Surname</label>
-               <input type="text" ngModel name="lastName" class="form-control" id="lastName" placeholder="Last Name" required>
-            </div>
-            <div class="form-group">
-               <label for="email">Email Address</label>
-               <input type="email" ngModel name="email" class="form-control" id="email" placeholder="Email" required>
-            </div>
-            <div class="form-group">
-               <label for="jobTile">Job title</label>
-               <input type="text" ngModel name="jobTile" class="form-control" id="jobTile" placeholder="Job title" required>
-            </div>
-            <div class="form-group">
-               <label for="gender">Gender</label>
-               <input type="text" ngModel name="gender" class="form-control" id="gender" placeholder="Gender" required>
-            </div>
-            <div class="form-group">
-               <label for="imageUrl">Image URL</label>
-               <input type="text" ngModel name="imageUrl" class="form-control" id="imageUrl" placeholder="Image URL" required>
-            </div>
-            <div class="form-group">
-               <label for="linkedinUrl">LinkedIn URL</label>
-               <input type="text" ngModel name="linkedinUrl" class="form-control" id="linkedinUrl" placeholder="LinkedIn URL" required>
-            </div>
-            <div class="modal-footer">
-               <button type="button" id="add-graduated-form" class="btn btn-secondary" data-dismiss="modal">Close</button>
-               <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary" >Save changes</button>
-            </div>
-            </form>
-         </div>
-      </div>
-    </div>
-    </div>
-
-  <!-- Edit Modal -->
-  <div class="modal fade" id="updateGraduatedModal" tabindex="-1" role="dialog" aria-labelledby="graduatedEditGraduatedLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-       <div class="modal-content">
-          <div class="modal-header">
-             <h5 class="modal-title" id="graduatedEditGraduatedLabel">Edit Graduated {{editGraduated?.firstName}} {{editGraduated?.lastName}}</h5>
-             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-             <span aria-hidden="true">&times;</span>
-             </button>
-          </div>
-          <div class="modal-body">
-             <form #editForm="ngForm">
-                <div class="form-group">
-                   <a for="firstName">First Name</a>
-                   <input type="text" ngModel="{{editGraduated?.firstName}}" name="firstName" class="form-control" id="firstName" aria-describedby="emailHelp" placeholder="First Name">
-                </div>
-                <div class="form-group">
-                  <label for="middleName">Middle Name</label>
-                  <input type="text" ngModel="{{editGraduated?.middleName}}" name="middleName" class="form-control" id="middleName" aria-describedby="emailHelp" placeholder="Middle Name">
-               </div>
-               <div class="form-group">
-                  <label for="lastName">Last Name</label>
-                  <input type="text" ngModel="{{editGraduated?.lastName}}" name="lastName" class="form-control" id="lastName" aria-describedby="emailHelp" placeholder="Last Name">
-               </div>
-                <input type="hidden" ngModel="{{editGraduated?.id}}" name="id" class="form-control" id="id" placeholder="Email">
-                <input type="hidden" ngModel="{{editGraduated?.id}}" name="userCode" class="form-control" id="userCode" placeholder="Email">
-                <div class="form-group">
-                   <label for="email">Email Address</label>
-                   <input type="email" ngModel="{{editGraduated?.email}}" name="email" class="form-control" id="email" placeholder="Email">
-                </div>
-                <div class="form-group">
-                   <label for="jobTile">Job title</label>
-                   <input type="text" ngModel="{{editGraduated?.jobTitle}}" name="jobTitle" class="form-control" id="jobTitle" placeholder="Job title">
-                </div>
-                <div class="form-group">
-                   <label for="gender">Gender</label>
-                   <input type="text" ngModel="{{editGraduated?.gender}}" name="gender" class="form-control" id="gender" name="gender" placeholder="Gender">
-                </div>
-                <div class="form-group">
-                   <label for="imageUrl">Image URL</label>
-                   <input type="text" ngModel="{{editGraduated?.imageUrl}}" name="imageUrl" class="form-control" id="imageUrl" placeholder="Image URL">
-                </div>
-                <div class="modal-footer">
-                   <button type="button" id="" data-dismiss="modal" class="btn btn-secondary">Close</button>
-                   <button (click)="onUpdateGraduated(editForm.value)" data-dismiss="modal" class="btn btn-primary" >Save changes</button>
-                </div>
-             </form>
-          </div>
-       </div>
-    </div>
-  </div>
-
-  <!-- Delete Modal -->
-  <div class="modal fade" id="deleteGraduatedModal" tabindex="-1" role="dialog" aria-labelledby="deleteGraduatedLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-       <div class="modal-content">
-          <div class="modal-header">
-             <h5 class="modal-title" id="deleteGraduatedLabel">Delete Graduated</h5>
-             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-             <span aria-hidden="true">&times;</span>
-             </button>
-          </div>
-          <div class="modal-body">
-             <p>Are you sure you want to delete graduated {{deleteGraduated?.firstName}} {{deleteGraduated?.lastName}}?</p>
-             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                <button (click)="onDeleteGraduated(deleteGraduated?.id)" class="btn btn-danger" data-dismiss="modal">Yes</button>
-             </div>
-          </div>
-       </div>
-    </div>
-  </div>
-  </div>
-
+ 
    <!-- Info Modal -->
     <div class="modal fade" id="infoAboutGraduatedModal" tabindex="-1" role="dialog" aria-labelledby="infoGraduatedLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
@@ -240,7 +115,7 @@
                   <img src="{{findInfoAboutGraduated?.imageUrl}}" alt="" class="img-fluid rounded-circle w-90">
                </div>
                <h5 class="col-6 card-title align-self-center mb-0" id="fullInfoGraduatedLabel">{{findInfoAboutGraduated?.firstName}} {{findInfoAboutGraduated?.lastName}} </h5>
-               <button mat-mini-fab color="primary">
+               <button data-dismiss="modal" mat-mini-fab color="primary">
                   <mat-icon>close</mat-icon>
                </button>
             </div>
