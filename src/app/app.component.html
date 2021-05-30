@@ -1,43 +1,46 @@
 <div id="app">
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #3f51b5;">
     <img _ngcontent-voc-c11="" alt="Angular Logo" src="http://is.nuft.edu.ua/img/logo/acs.png" width="40">
-     <a href="/#" class="navbar-brand">Register Of Graduates</a>
+     <a mat-button i18n="Name@@AppName" href="/#" class="navbar-brand">Register Of Graduates</a>
      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
        <span class="navbar-toggler-icon"></span>
      </button>
     <div class="collapse navbar-collapse" id="navbarColor02">
        <ul class="navbar-nav mr-auto" routerLinkActive="active">
         <li class="nav-item">
-          <a href="/home" class="btn btn-dark" routerLink="home">Home </a>
+          <a mat-button i18n="home@@homePage" href="/home" class="btn" style="background-color: #3f51b5; color: white;" routerLink="home">Home </a>
         </li>
         <li class="nav-item" *ngIf="showAdminBoard">
-          <a href="/admin" class="btn btn-dark" routerLink="admin">Admin Board</a>
+          <a mat-button i18n="admin board@@adminBoard" href="/admin" class="btn" style="background-color: #3f51b5; color: white;" routerLink="admin">Admin Board</a>
         </li>
         <li class="nav-item" *ngIf="showModeratorBoard">
-          <a href="/mod" class="btn btn-dark" routerLink="mod">Moderator Board</a>
+          <a mat-button i18n="moderator board@@moderBoard" href="/mod" class="btn" style="background-color: #3f51b5; color: white;" routerLink="mod">Moderator Board</a>
         </li>
         <li class="nav-item">
-          <a href="/user" class="btn btn-dark" *ngIf="isLoggedIn" routerLink="user">User</a>
+          <a mat-button i18n="users@@users" href="/user" class="btn" style="background-color: #3f51b5; color: white;"*ngIf="isLoggedIn" routerLink="user">User</a>
         </li>
         <li class="nav-item">
-         <a href="/graduated" class="btn btn-dark" *ngIf="isLoggedIn" routerLink="graduated">Graduates</a>
+         <a mat-button i18n="graduates@@graduates" href="/graduated" class="btn" style="background-color: #3f51b5; color: white;" *ngIf="isLoggedIn" routerLink="graduated">Graduates</a>
        </li>
+       <li class="nav-item">
+        <a mat-button i18n="charts@@charts" href="/chart" class="btn" style="background-color: #3f51b5; color: white;" *ngIf="isLoggedIn" routerLink="chart">Chart</a>
+      </li>
       </ul>
       <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
         <li class="nav-item">
-         <a href="/register" class="btn btn-dark" routerLink="register">Sign Up</a>
+         <a mat-button i18n="sign in@@signin" href="/register" class="btn" style="background-color: #3f51b5; color: white;" routerLink="register">Sign Up</a>
         </li>
         <li class="nav-item">
-         <a href="/login" class="btn btn-dark" routerLink="login">Login</a>
+         <a mat-button i18n="login@@login" href="/login" class="btn" style="background-color: #3f51b5; color: white;" routerLink="login">Login</a>
        </li>
       </ul>
   
       <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
        <li class="nav-item">
-         <a href="/profile" class="btn btn-dark" routerLink="profile">{{ username }}</a>
+         <a mat-button href="/profile" class="btn" style="background-color: #3f51b5; color: white;" routerLink="profile">{{ username }}</a>
        </li>
        <li class="nav-item">
-         <a href class="btn btn-dark" (click)="logout()">LogOut</a>
+         <a mat-button i18n="logout@@logout" class="btn" style="background-color: #3f51b5; color: white;" (click)="logout()">LogOut</a>
        </li>
      </ul>
     </div>
@@ -49,10 +52,10 @@
 </div>
 <div style="background-color: #3f51b5;" class="footer" #footer>
   <div class="about">
-    <button mat-raised-button color="primary" style="margin-top: 20px; margin-left: 20px;">About creator</button>
+    <button i18n="about" [routerLink]="['/about']" routerLinkActive="router-link-active"  mat-raised-button color="primary" style="margin-top: 20px; margin-left: 20px;">About author</button>
   </div>
   <div class="center" style="text-align: center;">
-  <p> Code licensed under an <a href="license" title="License text">MIT-style License</a>. Created by @Roman Sulymka.
+  <p i18n="license@@license"> Code licensed under an <a href="license" title="License text">MIT-style License</a>. Created by @Roman Sulymka.
   </p>
 </div>
 <div class="example-button-row">

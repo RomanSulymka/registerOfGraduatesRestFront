@@ -1,0 +1,51 @@
+<!--Nav Bar -->
+<ol class="breadcrumb" style="margin-right: 1%; margin-left: 1%; margin-top: 1%; border-radius: 16px;">
+    <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+    <li class="breadcrumb-item"><a routerLink="/graduated">Graduates</a></li>
+    <li class="breadcrumb-item active">Charts</li>
+  </ol>
+  
+<mat-tab-group>
+    <mat-tab label="Company charts">
+        <div>
+            <div>
+                <div class="chart">
+                    <canvas baseChart
+                    [data]="pieChartData"
+                    [labels]="pieChartLabels"
+                    [chartType]="pieChartType"
+                    [options]="pieChartOptions"
+                    [plugins]="pieChartPlugins"
+                    [colors]="pieChartColors"
+                    [legend]="pieChartLegend">
+                    </canvas>
+                </div>
+            </div>
+        </div>
+        <div>
+            <button mat-button mat-raised-button color="primary" (click)="pieChartLegend=!pieChartLegend">Toggle Legend</button>
+            <button mat-button mat-raised-button color="primary" (click)="changeLegendPosition()" style="margin-bottom: 20px;">Change Legend Position</button>
+        </div>
+    </mat-tab>
+    <mat-tab label="Technology charts">
+        <div>
+            <div>
+                <div class="chart">
+                    <canvas baseChart
+                    [data]="pieChartTechnologyData"
+                    [labels]="pieChartTechnologyLabels"
+                    [chartType]="pieChartTechnologyType"
+                    [options]="pieChartOptions"
+                    [plugins]="pieChartTechnologyPlugins"
+                    [colors]="pieChartTechnologyColors"
+                    [legend]="pieChartTechnologyLegend">
+                    </canvas>
+                </div>
+            </div>
+        </div>
+        <div>
+            <button mat-button mat-raised-button color="primary" (click)="pieChartTechnologyLegend=!pieChartTechnologyLegend">Toggle Legend</button>
+            <button mat-button mat-raised-button color="primary" (click)="changeLegendPosition()" style="margin-bottom: 20px;">Change Legend Position</button>
+        </div>
+    </mat-tab>
+</mat-tab-group>

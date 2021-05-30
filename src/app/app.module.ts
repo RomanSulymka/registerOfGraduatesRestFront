@@ -10,8 +10,8 @@ import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
-import { BoardAdminComponent, UpdateUserDialog, UpdateGraduateDialog, 
-          DeleteDialogComponent, DeleteUserDialog, OpenUpdateWorksDialog,
+import { BoardAdminComponent, UpdateUserDialog, UpdateGraduateDialog, DeleteWorkDialog,  
+          DeleteDialogComponent, DeleteUserDialog, UpdateWorkDialog,
           CreateUserComponent, CreateGraduateComponent, OpenGraduateWorksDialog } from './board-admin/board-admin.component';
 import { BoardModeratorComponent } from './board-moderator/board-moderator.component';
 import { RegisterComponent } from './register/register.component';
@@ -28,6 +28,9 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
 import { MaterialModule } from './material/material.module';
+import { ChartsModule } from 'ng2-charts';
+import { ChartPageComponent } from './chart-page/chart-page.component';
+import { AboutComponent } from './about/about.component';
 
 
 @NgModule({
@@ -50,7 +53,10 @@ import { MaterialModule } from './material/material.module';
     CreateUserComponent,
     CreateGraduateComponent,
     OpenGraduateWorksDialog,
-    OpenUpdateWorksDialog
+    ChartPageComponent,
+    DeleteWorkDialog,
+    UpdateWorkDialog,
+    AboutComponent
   ],
   imports: [
     AppRoutingModule,
@@ -70,6 +76,7 @@ import { MaterialModule } from './material/material.module';
     BrowserModule, FormsModule, MatButtonModule, MatIconModule, AppRoutingModule, MatDialogModule, BrowserAnimationsModule,
     MaterialModule,
     MatDialogModule,    
+    ChartsModule
   ],
   providers: [authInterceptorProviders,
   { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },
