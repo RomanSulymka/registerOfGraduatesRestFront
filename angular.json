@@ -12,6 +12,12 @@
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
+      "i18n": {
+        "sourceLocale": "ua",
+        "locales": {
+          "en": "src/i18n/messages.en.xlf"
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -32,6 +38,9 @@
             "scripts": []
           },
           "configurations": {
+            "en": {
+              "localize": ["en"]
+            },
             "production": {
               "fileReplacements": [
                 {
@@ -69,6 +78,9 @@
           "configurations": {
             "production": {
               "browserTarget": "registerOfGraduatesFront:build:production"
+            },
+            "en": {
+              "browserTarget": "registerOfGraduatesFront:build:en"
             }
           }
         },

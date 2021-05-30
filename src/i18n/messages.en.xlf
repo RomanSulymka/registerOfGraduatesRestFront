@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="ua" datatype="plaintext" target-language="en" original="ng2.template">
+    <body>
+      <trans-unit id="AppName" datatype="html">
+        <source>Register Of Graduates</source>
+        <target>Облік випусників</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+        <note priority="1" from="description">Name</note>
+      </trans-unit>
+      <trans-unit id="homePage" datatype="html">
+        <source>Home </source>
+        <target>Головна </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+        <note priority="1" from="description">home</note>
+      </trans-unit>
+      <trans-unit id="adminBoard" datatype="html">
+        <source>Admin Board</source>
+        <target>Адмін панель </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+        <note priority="1" from="description">admin board</note>
+      </trans-unit>
+      <trans-unit id="moderBoard" datatype="html">
+        <source>Moderator Board</source>
+        <target>Сторінка модератора </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+        <note priority="1" from="description">moderator board</note>
+      </trans-unit>
+      <trans-unit id="users" datatype="html">
+        <source>User</source>
+        <target>Користувачі</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+        <note priority="1" from="description">users</note>
+      </trans-unit>
+      <trans-unit id="graduates" datatype="html">
+        <source>Graduates</source>
+        <target>Випускники</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+        <note priority="1" from="description">graduates</note>
+      </trans-unit>
+      <trans-unit id="charts" datatype="html">
+        <source>Chart</source>
+        <target>Статистика</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+        <note priority="1" from="description">charts</note>
+      </trans-unit>
+      <trans-unit id="signin" datatype="html">
+        <source>Sign Up</source>
+        <target>Реєстрація</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+        <note priority="1" from="description">sign in</note>
+      </trans-unit>
+      <trans-unit id="login" datatype="html">
+        <source>Login</source>
+        <target>Вхід</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+        <note priority="1" from="description">login</note>
+      </trans-unit>
+      <trans-unit id="logout" datatype="html">
+        <source>LogOut</source>
+        <target>Вихід</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">43</context>
+        </context-group>
+        <note priority="1" from="description">logout</note>
+      </trans-unit>
+      <trans-unit id="4896226835190578076" datatype="html">
+        <source>About creator</source>
+        <target>Про автора</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">55</context>
+        </context-group>
+        <note priority="1" from="description">about</note>
+      </trans-unit>
+      <trans-unit id="license" datatype="html">
+        <source> Code licensed under an <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;license&quot; title=&quot;License text&quot;&gt;"/>MIT-style License<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>. Created by @Roman Sulymka. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">58,59</context>
+        </context-group>
+        <note priority="1" from="description">license</note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

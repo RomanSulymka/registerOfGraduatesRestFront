@@ -1,0 +1,92 @@
+<!--Nav Bar -->
+<ol class="breadcrumb" style="margin-right: 1%; margin-left: 1%; margin-top: 1%; border-radius: 16px;">
+    <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+    <li class="breadcrumb-item active">About author</li>
+  </ol>
+  
+<mat-grid-list cols="2" rowHeight="2:1" style="margin-bottom: 20px; margin-top: 20px;">
+    <mat-grid-tile>
+        <mat-card class="example-card" style="width: 200px;">
+            <mat-label style="margin-right: 50px; font-weight: 600; text-align: center; ">Автор: </mat-label>
+            <img mat-card-image src="data:image/jpeg;base64,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" alt="розробив" style=" background-size: cover; width: 200px; height: 200px;">
+        </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <mat-accordion>
+            <mat-expansion-panel hideToggle>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Студент групи 4-5ск: 
+                </mat-panel-title>
+                <mat-panel-description>
+                    Сулимка Роман Орестович
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <p>Додаток розробив студент групи 4-5ск Сулимка Роман Орестович.</p>
+            </mat-expansion-panel>
+            <mat-expansion-panel (opened)="panelOpenState = true"
+                                 (closed)="panelOpenState = false">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Технології: 
+                </mat-panel-title>
+                <mat-panel-description>
+                  Зараз технології {{panelOpenState ? 'показано' : 'приховано'}}
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <p>Front-end: Angular, TypeScript, Material Design</p>
+              <p>Back-end: Java, Spring Boot, Hibernate</p>
+              <p>Database: PostgreSQL</p>
+            </mat-expansion-panel>
+            <mat-expansion-panel (opened)="panelOpenState2 = true"
+                                 (closed)="panelOpenState2 = false">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Контакти: 
+                </mat-panel-title>
+                <mat-panel-description>
+                  Контакти {{panelOpenState ? 'показано' : 'приховано'}}
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <p>E-mail: roma.sulimak@gmail.com</p>
+              <p>LinkedIn: <a mat-raised-button color="primary" href="https://www.linkedin.com/in/roman-sulymka-6b419a198?trk=public_profile_browsemap_profile-result-card_result-card_full-click&originalSubdomain=ua">Roman Sulymka</a></p>
+              <p>Telegram: @roman_satori</p>
+            </mat-expansion-panel>
+          </mat-accordion>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <mat-card class="example-card" style="width: 200px;">
+            <mat-label style="margin-right: 50px; font-weight: 600; text-align: center;">Науковий керівник: </mat-label>
+            <img mat-card-image src="https://media-exp1.licdn.com/dms/image/C5603AQGOGbb4piz6vQ/profile-displayphoto-shrink_200_200/0/1582114950417?e=1628121600&v=beta&t=zqxddIbCAdC7ArB1QBWBgCIlLXsCfqnMcabqNmM-9Rs" alt="Науковий керівник" style=" background-size: cover; width: 200px; height: 200px;">
+        </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <mat-accordion style="width: 486.733px;">
+            <mat-expansion-panel hideToggle>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Доцент:  
+                </mat-panel-title>
+                <mat-panel-description>
+                    Костіков Микола Павлович
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+            </mat-expansion-panel>
+            <mat-expansion-panel (opened)="panelOpenState2 = true"
+                                 (closed)="panelOpenState2 = false">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Контакти: 
+                </mat-panel-title>
+                <mat-panel-description>
+                  Контакти {{panelOpenState ? 'показано' : 'приховано'}}
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <p>E-mail: mikolaszk@gmail.com</p>
+              <p>LinkedIn: <a mat-raised-button color="primary" href="https://www.linkedin.com/in/mykola-kostikov-b001404a/">Mykola Kostikov</a></p>
+              <p>Telegram: @mikolasz</p>
+            </mat-expansion-panel>           
+          </mat-accordion>
+    </mat-grid-tile>
+  </mat-grid-list>
+  
