@@ -6,15 +6,17 @@
   
       <!--Textarea for demo purposes-->
       <div class="form">
-        <mat-form-field color="accent">
-          <textarea matInput #input class="form-control" placeholder="Username" [(ngModel)]="data.username" name="username" required ></textarea>
+        <mat-form-field>
+          <mat-label>Username</mat-label>
+          <textarea matInput #input placeholder="Username" [(ngModel)]="data.username" name="username" required ></textarea>
           <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
       </div>
   
       <!--Textarea for demo purposes-->
     <div class="form">
-        <mat-form-field color="accent">
+        <mat-form-field>
+          <mat-label>Password</mat-label>
           <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="data.password" name="password" required >
           <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
@@ -24,8 +26,9 @@
       </div>
   
       <div class="form">
-        <mat-form-field color="accent">
-          <input matInput #inputstate class="form-control" placeholder="email" [(ngModel)]="data.email" name="email" required >
+        <mat-form-field>
+          <mat-label>E-mail</mat-label>
+          <input matInput #inputstate placeholder="email" [(ngModel)]="data.email" name="email" required >
           <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
       </div>
@@ -42,8 +45,8 @@
       </div>
 
       <div mat-dialog-actions>
-        <button mat-button [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="onSubmit()">Save</button>
-        <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
+        <button mat-raised-button color="primary" [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="onSubmit()">Save</button>
+        <button mat-raised-button color="accent"  (click)="onNoClick()" tabindex="-1">Cancel</button>
       </div>
     </form>
   </div>

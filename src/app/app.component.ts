@@ -15,6 +15,11 @@ export class AppComponent implements OnInit{
   showModeratorBoard = false;
   username?: string;
 
+  localeList: object = [
+    {code: 'ua', label: 'Українська'},
+    {code: 'en', label: 'English'}
+  ]
+
   constructor(private tokenStorageService: TokenStorageService) { }
 
   ngOnInit(): void {

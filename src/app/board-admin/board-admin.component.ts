@@ -35,33 +35,48 @@ export class BoardAdminComponent implements OnInit, AfterViewInit {
   works: any;
   nav_position: string = 'end';
   public displayedColumns = ['id', 'username', 'email', 'role', 'update', 'delete'];
-  public displayedColumnsGraduate = ['idGraduate', 'firstName', 'middleName', 'lastName', 'emailGraduate', 'jobTitle', 'gender', 'workButton', 'updateWork', 'updateGraduate', 'deleteGraduate'];
+  public displayedColumnsGraduate = ['idGraduate', 'firstName', 'middleName', 'lastName', 'emailGraduate', 'jobTitle', 'gender', 'workButton', 'updateGraduate', 'deleteGraduate'];
+  public displayedColumnsWork = ['idWork', 'position', 'company', 'startWork', 'endWork', 'updateWork', 'deleteWork'];
   public dataSource = new MatTableDataSource<User>();
   public dataSourceGraduate = new MatTableDataSource<Graduated>();
+  public dataSourceWork = new MatTableDataSource<Work>();
   public users: User[];
   public deleteUser: User;
   @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatSort) sortWork: MatSort;
+  @ViewChild(MatSort) sortGraduate: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatPaginator) paginatorWork: MatPaginator;
+  @ViewChild(MatPaginator) paginatorGraduate: MatPaginator;
   private updateUserDialog = UpdateUserDialog;
   private updateGraduateDialog = UpdateGraduateDialog;
+  private updateWorkDialog = UpdateWorkDialog;
   private deleteDialogComponent = DeleteDialogComponent;
   private deleteUserDialog = DeleteUserDialog;
+  private deleteWorkDialog = DeleteWorkDialog;
   private createUserComponent = CreateUserComponent;
   private createGraduateComponent = CreateGraduateComponent;
   private openGraduateWorksDialog = OpenGraduateWorksDialog;
-  private openUpdateWorksDialog = OpenUpdateWorksDialog;
 
-  constructor(private userService: UserService, public dialog: MatDialog, private graduatedService: GraduatedService) { }
+  constructor(private userService: UserService, public dialog: MatDialog, private graduatedService: GraduatedService, private workService: WorkService) { }
 
   ngOnInit() {
     this.getUsers();
     this.getGraduates();
+    this.getWorks();
   }
 
   public getUsers(): void {
     this.userService.getUsers()
     .subscribe(res => {
       this.dataSource.data = res as User[];
+    })
+  }
+
+  public getWorks(): void {
+    this.workService.getWorks()
+    .subscribe(res => {
+      this.dataSourceWork.data = res as Work[];
     })
   }
 
@@ -75,8 +90,10 @@ export class BoardAdminComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
-    this.dataSourceGraduate.sort = this.sort;
-    this.dataSourceGraduate.paginator = this.paginator;
+    this.dataSourceGraduate.sort = this.sortGraduate;
+    this.dataSourceGraduate.paginator = this.paginatorGraduate;
+    this.dataSourceWork.sort = this.sortWork;
+    this.dataSourceWork.paginator = this.paginatorWork;
   }
 
   public customSort = (event) => {
@@ -87,12 +104,20 @@ export class BoardAdminComponent implements OnInit, AfterViewInit {
     console.log(event);
   }
 
+  public customSortWork = (event) => {
+    console.log(event);
+  }
+
   public doFilter = (value: string) => {
     this.dataSource.filter = value.trim().toLocaleLowerCase();
   }
 
   public doFilterGraduate = (value: string) => {
     this.dataSourceGraduate.filter = value.trim().toLocaleLowerCase();
+  }
+
+  public doFilterWork = (value: string) => {
+    this.dataSourceWork.filter = value.trim().toLocaleLowerCase();
   }
 
   public onUpdateUser(user: User): void {
@@ -162,11 +187,25 @@ export class BoardAdminComponent implements OnInit, AfterViewInit {
     });
   }
 
+  // Update User Data
+  public editWork(idWork, company, position, startWork, endWork) {
+    this.dialog.open(this.updateWorkDialog, {
+      data: {id: idWork, position: position, company: company, startWork: startWork, endWork: endWork, dataSource: this.dataSourceWork}
+    });
+  }
+
   //Delete Graduate
   public deleteGraduate(idGraduate, firstName, middleName, lastName, emailGraduate, jobTitle, gender) {
    this.dialog.open(this.deleteDialogComponent, {
       data: {id: idGraduate, firstName: firstName, middleName: middleName, lastName: lastName, email: emailGraduate,
               jobTitle: jobTitle, gender: gender}
+    });
+  }
+
+  //Delete Work
+  public deleteWork(idWork, company, position, endWork, startWork) {
+   this.dialog.open(this.deleteWorkDialog, {
+      data: {id: idWork, company: company, position: position, endWork: endWork, startWork: startWork}
     });
   }
 
@@ -185,12 +224,6 @@ export class BoardAdminComponent implements OnInit, AfterViewInit {
   public openWork(){
     this.dialog.open(this.openGraduateWorksDialog, {
       data: {Graduate: {} }
-    });
-  }
-
-  public openUpdateWork(idGraduate, works){
-    this.dialog.open(this.openUpdateWorksDialog, {
-      data: {id: idGraduate, works: works}
     });
   }
 }
@@ -617,83 +650,103 @@ export class OpenGraduateWorksDialog{
     }
 }
 
+// Update User Component
 @Component({
-  templateUrl: 'open-update-works-dialog.html',
+  selector: 'work-update-panel',
+  templateUrl: 'work-update-panel.html',
 })
-export class OpenUpdateWorksDialog{
-  constructor(public dialogRef: MatDialogRef<OpenUpdateWorksDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: Work, @Inject(MAT_DIALOG_DATA) public dataGraduate: Graduated, public graduateService: GraduatedService, public workService: WorkService) { }
-    public graduates: Graduated[];
-    public displayedColumns = ['id', 'company', 'position', 'startWork', 'endWork', 'update', 'delete'];
+export class UpdateWorkDialog {
+  constructor(private dropdownService: UserService, public dialogRef: MatDialogRef<UpdateWorkDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: Work, public workSerive: WorkService) {}
+
     public dataSource = new MatTableDataSource<Work>();
-    public works: {
-      id?: number;
-      company?: string;
-      position?: string;
-      startWork?: string;
-      endWork?: string;
-      graduatedId: number;
-    };
-    public allWorks: Work[];
-    public work: Work;
-    private graduateId: number;
-    private workId: number;
-    public graduated: Graduated;
+    public works: Work[];
+
     formControl = new FormControl('', [
-      Validators.required
-      // Validators.email,
-    ]);
-  
-    ngOnInit() {
-      this.getWorks();
-      this.getGraduates();
-    }
+  Validators.required
+  // Validators.email,
+  ]);
 
-    getErrorMessage() {
-      return this.formControl.hasError('required') ? 'Required field' :
-        this.formControl.hasError('email') ? 'Not a valid email' :
-          '';
-    }
-  
-    submit() {
-    // emppty stuff
-    }
-  
-    onNoClick(): void {
-      this.dialogRef.close();
-    }
-  
-    public getGraduates(): void {
-      this.graduateService.getGraduates().subscribe(
-        (response: Graduated[]) => {
-          this.graduates = response;
-        },
-        (error: HttpErrorResponse) => {
-          alert(error.message);
-        }
-      );
-    }
-  
-    public getWorks(): void{
-      this.workService.getWorks().subscribe(
-        (response: Work[]) => {
-          this.allWorks = response;
-        },
-        (error: HttpErrorResponse) => {
-          alert(error.message);
-        }
-      );
-    }
+  ngOnInit() {
+    this.getWorks();
+  }
 
-    public updateWork(): void {
-      this.workService.updateWork(this.graduateId, this.workId, this.work).subscribe(
-        (response: Work) => {
-          console.log(response);
-          this.getWorks();
-        },
-        (error: HttpErrorResponse) => {
-          alert(error.message)
-        }
-      );
-    }
+  public getWorks(): void {
+    this.workSerive.getWorks().subscribe(
+      (response: Work[]) => {
+        this.works = response;
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+  }
+
+  getErrorMessage() {
+  return this.formControl.hasError('required') ? 'Required field' :
+  this.formControl.hasError('email') ? 'Not a valid email' :
+  '';
+  }
+
+  submit() {
+  // emppty stuff
+  }
+
+  onNoClick(): void {
+  this.dialogRef.close();
+  }
+
+  stopEdit(): void {
+  this.workSerive.updateWork(this.data.graduatedId, this.data.id, this.data);
+  }
+
+  public updateWork(work: Work): void {
+    this.workSerive.updateWork(this.data.graduatedId, this.data.id, work).subscribe(
+      (response: Work) => {
+        console.log(response);
+        this.getWorks();
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+  }
+}
+
+@Component({
+  selector: 'work-delete.dialog',
+  templateUrl: 'delete-work-dialog.html',
+})
+export class DeleteWorkDialog {
+
+  constructor(public dialogRef: MatDialogRef<DeleteWorkDialog>,
+              @Inject(MAT_DIALOG_DATA) public data: any, public workService: WorkService) { }
+  
+    public works: Work[];
+
+    public getWorks(): void {
+    this.workService.getWorks().subscribe(
+      (response: Work[]) => {
+        this.works = response;
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+  }
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
+  public confirmDelete(workId: number): void {
+    this.workService.deleteWork(workId).subscribe(
+      (response: void) => {
+        console.log(response);
+        this.getWorks();
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+  }
 }

@@ -9,6 +9,8 @@ import { BoardAdminComponent } from './board-admin/board-admin.component';
 import { BoardModeratorComponent } from './board-moderator/board-moderator.component';
 import { RegisterComponent } from './register/register.component';
 import { WorkComponent } from './work/work.component';
+import { ChartPageComponent } from './chart-page/chart-page.component';
+import { AboutComponent } from './about/about.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -21,7 +23,9 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent },
   { path: 'work', component: WorkComponent},
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'register', component: RegisterComponent}
+  { path: 'register', component: RegisterComponent},
+  { path: 'chart', component: ChartPageComponent},
+  { path: 'about', component: AboutComponent }
 ];
 
 @NgModule({
