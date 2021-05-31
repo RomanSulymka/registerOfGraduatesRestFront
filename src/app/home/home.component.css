@@ -121,3 +121,6 @@ body {
 .mat-button-toggle, .mat-card {
     font-family: Roboto,Helvetica Neue,sans-serif;
 }
+.inline-block {
+    display: inline-block;
+  }
