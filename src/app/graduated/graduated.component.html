@@ -1,6 +1,6 @@
 <ol class="breadcrumb" style="margin-right: 1%; margin-left: 1%; margin-top: 1%; border-radius: 16px;">
-   <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
-   <li class="breadcrumb-item active">Graduates</li>
+   <li class="breadcrumb-item"><a routerLink="/">Головна</a></li>
+   <li class="breadcrumb-item active">Випусники</li>
  </ol>
 
  <!--Admin board-->
@@ -30,11 +30,11 @@
                 </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item"><i class="material-icons float-right icon-email">mail</i>E-mail: {{graduated?.email}}</li>
-                    <li class="list-group-item"><i class="material-icons float-right icon-sex">face</i>Sex: {{graduated?.gender}}</li>
+                    <li class="list-group-item"><i class="material-icons float-right icon-sex">face</i>Стать: {{graduated?.gender}}</li>
                     <li class="list-group-item"><i class="material-icons float-right icon-blue">school</i>
-                     Graduation year: {{graduated?.graduationYearFromBachelor}}</li>
+                     Рік випуску: {{graduated?.graduationYearFromBachelor}}</li>
                     <p  class="m-0" *ngFor="let work of graduated.works; let i =index"> <i style="margin-left: 18px;" *ngIf ="i>=graduated.works.length -1" >
-                       Company: {{work.company }}</i></p>
+                       Компанія: {{work.company }}</i></p>
                 </ul>
 
                 <div class="card-body">
@@ -62,42 +62,42 @@
                   <label for="imageUrl"></label>
                   <img src="{{findGraduated?.imageUrl}}" alt="" class="img-fluid rounded-circle w-90">
                </div>
-               <h5 class="col-6 card-title align-self-center mb-0" id="infoGraduatedLabel">{{findGraduated?.firstName}} {{findGraduated?.lastName}} </h5>
-               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-               <span aria-hidden="true">&times;</span>
+               <h5 class="col-6 card-title align-self-center mb-0" id="infoGraduatedLabel" style="color: white;">{{findGraduated?.firstName}} {{findGraduated?.lastName}} </h5>
+               <button data-dismiss="modal" mat-mini-fab color="primary">
+                  <mat-icon>close</mat-icon>
                </button>
             </div>
             <div class="modal-body">
                <form #editForm="ngForm">
                   
                   <div class="form-group" style="border-bottom: 2px solid #ADC2CE; color: rgb(4, 10, 61);">
-                     <a for="firstName">Full Name </a>
+                     <a for="firstName">Повне ім'я </a>
                      <label type="text" name="firstName" id="firstName" aria-describedby="emailHelp">: {{findGraduated?.firstName}} {{findGraduated?.middleName}} {{findGraduated?.lastName}}</label>
                   </div>
                   
                   <input type="hidden" ngModel="{{findGraduated?.id}}" name="id" class="form-control" id="id" placeholder="Email">
                   <input type="hidden" ngModel="{{findGraduated?.id}}" name="userCode" class="form-control" id="userCode" placeholder="Email">
                   <div class="form-group" style="border-bottom: 2px solid #ADC2CE;">
-                     <label for="email">Email Address</label>
+                     <label for="email">E-mail</label>
                      <label type="email" name="email" id="email" placeholder="Email">: {{findGraduated?.email}}</label>
                   </div>
                   <div class="form-group" style="border-bottom: 2px solid #ADC2CE;">
-                     <label for="gender">Gender </label>
+                     <label for="gender">Стать </label>
                      <label type="text" name="gender" id="gender" name="gender" placeholder="Gender">: {{findGraduated?.gender}}</label>
                   </div>
                   <div class="form-group" style="border-bottom: 2px solid #ADC2CE;">
-                     <label for="graduationYearFromBachelor">Finish Bachelors Degree </label>
+                     <label for="graduationYearFromBachelor">Рік закінчення бакалаврату </label>
                      <label type="text" name="graduationYearFromBachelor" id="graduationYearFromBachelor" name="graduationYearFromBachelor" placeholder="graduationYearFromBachelor">: {{findGraduated?.graduationYearFromBachelor}}</label>
                   </div>
                   <div class="form-group"  *ngFor="let work of findGraduated?.works; let i =index">
-                     <label type="text" name="gender" id="position" name="position" placeholder="position" *ngIf ="i>=findGraduated?.works.length -1">Position: {{work?.position}}</label>
+                     <label type="text" name="gender" id="position" name="position" placeholder="position" *ngIf ="i>=findGraduated?.works.length -1">Позиція: {{work?.position}}</label>
                   </div>
                   <div class="form-group" style="border-bottom: 2px solid #ADC2CE;" *ngFor="let work of findGraduated?.works; let i =index">
-                     <label type="text" name="gender" id="company" name="company" placeholder="company" *ngIf ="i>=findGraduated?.works.length -1">Company: {{work?.company}}</label>
+                     <label type="text" name="gender" id="company" name="company" placeholder="company" *ngIf ="i>=findGraduated?.works.length -1">Компанія: {{work?.company}}</label>
                   </div>
                   <div class="modal-footer">
-                     <a (click)="onOpenModal(findGraduated, 'fullInfo')" class="btn btn-info">Work info</a>
-                     <button type="button" id="" data-dismiss="modal" class="btn btn-secondary">Close</button>
+                     <a (click)="onOpenModal(findGraduated, 'fullInfo')" mat-raised-button color="primary">Інформація про роботу</a>
+                     <button mat-raised-button color="warn" id="" data-dismiss="modal" >Закрити</button>
                   </div>
                </form>
             </div>
@@ -122,47 +122,47 @@
             <div class="modal-body">
                <form #editForm="ngForm" style="float:left; margin-right: 20px;" width="275"> 
                   <div class="form-group" style="border-bottom: 2px solid #ADC2CE; color: rgb(4, 10, 61);">
-                     <a for="firstName">Full Name </a>
+                     <a for="firstName">Повне ім'я </a>
                      <label type="text" name="firstName" id="firstName" aria-describedby="emailHelp">: {{findInfoAboutGraduated?.firstName}} {{findInfoAboutGraduated?.middleName}} {{findInfoAboutGraduated?.lastName}}</label>
                   </div>
                   
                   <input type="hidden" ngModel="{{findGraduated?.id}}" name="id" class="form-control" id="id" placeholder="Email">
                   <input type="hidden" ngModel="{{findGraduated?.id}}" name="userCode" class="form-control" id="userCode" placeholder="Email">
                   <div class="form-group" style="border-bottom: 2px solid #ADC2CE;">
-                     <label for="email">Email Address</label>
+                     <label for="email">E-mail</label>
                      <label type="email" name="email" id="email" placeholder="Email">: {{findInfoAboutGraduated?.email}}</label>
                   </div>
                   <div class="form-group" style="border-bottom: 2px solid #ADC2CE;">
-                     <label for="gender">Gender </label>
+                     <label for="gender">Стать </label>
                      <label type="text" name="gender" id="gender" name="gender" placeholder="Gender">: {{findInfoAboutGraduated?.gender}}</label>
                   </div>
                   <div class="form-group" style="border-bottom: 2px solid #ADC2CE;">
-                     <label for="graduationYearFromBachelor">Finish Bachelors Degree </label>
+                     <label for="graduationYearFromBachelor">Рік випуску з бакалаврату</label>
                      <label type="text" name="graduationYearFromBachelor" id="graduationYearFromBachelor" name="graduationYearFromBachelor" placeholder="graduationYearFromBachelor">: {{findInfoAboutGraduated?.graduationYearFromBachelor}}</label>
                   </div>
                   <div class="form-group"  *ngFor="let work of findInfoAboutGraduated?.works; let i =index">
-                     <label type="text" name="gender" id="position" name="position" placeholder="position" *ngIf ="i>=findInfoAboutGraduated?.works.length -1">Curently Position: {{work?.position}}</label>
+                     <label type="text" name="gender" id="position" name="position" placeholder="position" *ngIf ="i>=findInfoAboutGraduated?.works.length -1">Теперішня позиція: {{work?.position}}</label>
                   </div>
                   <div class="form-group" style="border-bottom: 2px solid #ADC2CE;" *ngFor="let work of findInfoAboutGraduated?.works; let i =index">
-                     <label type="text" name="gender" id="company" name="company" placeholder="company" *ngIf ="i>=findInfoAboutGraduated?.works.length -1">Curently Company: {{work?.company}}</label>
+                     <label type="text" name="gender" id="company" name="company" placeholder="company" *ngIf ="i>=findInfoAboutGraduated?.works.length -1">Теперішня компанія: {{work?.company}}</label>
                   </div>
                   <div class="form-group" style="border-bottom: 2px solid #ADC2CE;">
-                     <label for="updated">Created </label>
+                     <label for="updated">Анкету створено </label>
                      <label type="text" name="updated" id="updated" name="updated" placeholder="updated">: {{findInfoAboutGraduated?.created}}</label>
                   </div>
                   <div class="form-group" style="border-bottom: 2px solid #ADC2CE;">
-                     <label for="updated">Last Update </label>
+                     <label for="updated">Останнє оновлення </label>
                      <label type="text" name="updated" id="updated" name="updated" placeholder="updated">: {{findInfoAboutGraduated?.updated}}</label>
                   </div>
                </form>
-                Work Experiance:
+                Досвід роботи:
                <table style="width: auto; border: 20px; margin-top: 10px;" class="table">
                   <thead>
                      <tr>
-                         <td>Company</td>
-                         <td>Position</td>
-                         <td>Start Work</td>
-                         <td>End Work</td>
+                         <td>Компанія</td>
+                         <td>Позиція</td>
+                         <td>Рік початку</td>
+                         <td>Рік закінчення</td>
                      </tr>
                  </thead>
                  <tbody>
@@ -177,7 +177,7 @@
                </table>
             </div>
             <div class="modal-footer">
-               <button id="" data-dismiss="modal" mat-raised-button color="primary">Close</button>
+               <button id="" data-dismiss="modal" mat-raised-button color="primary">Закрити</button>
             </div>
          </div>
       </div>

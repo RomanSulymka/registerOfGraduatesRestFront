@@ -1,5 +1,5 @@
 <div class="container" style="width: 400px; height: auto;">
-    <h3 mat-dialog-title>Update work: {{data.company}} position: {{data.position}}</h3>
+    <h3 mat-dialog-title>Оновити роботу: {{data.company}}, Позиція: {{data.position}}</h3>
   
     <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm">
   
@@ -14,7 +14,7 @@
       <!--Textarea for demo purposes-->
       <div class="form">
         <mat-form-field>
-          <mat-label>Company</mat-label>
+          <mat-label>Компанія</mat-label>
           <input matInput #input placeholder="company" [(ngModel)]="data.company" name="company" required>
           <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
@@ -23,7 +23,7 @@
       <!--Textarea for demo purposes-->
       <div class="form">
         <mat-form-field>
-          <mat-label>Position</mat-label>
+          <mat-label>Позиція</mat-label>
           <input matInput #input placeholder="position" [(ngModel)]="data.position" name="position" required>
           <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
@@ -32,7 +32,7 @@
      <!--Textarea for demo purposes-->
      <div class="form">
         <mat-form-field>
-            <mat-label>Start Work</mat-label>
+            <mat-label>Рік початку</mat-label>
           <input matInput #input placeholder="startWork" [(ngModel)]="data.startWork" name="startWork" required>
           <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
@@ -41,15 +41,15 @@
      <!--Textarea for demo purposes-->
      <div class="form">
         <mat-form-field>
-          <mat-label>End Work</mat-label>
+          <mat-label>Рік закінчення</mat-label>
           <input matInput #input placeholder="endWork" [(ngModel)]="data.endWork" name="endWork" required>
           <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
       </div>
 
       <div mat-dialog-actions>
-        <button mat-raised-button color="primary" [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="updateWork(formControl.value)">Save</button>
-        <button mat-raised-button color="accent" (click)="onNoClick()" tabindex="-1">Cancel</button>
+        <button mat-raised-button color="primary" [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="updateWork(formControl.value)">Зберегти</button>
+        <button mat-raised-button color="accent" (click)="onNoClick()" tabindex="-1">Скасувати</button>
       </div>
     </form>
   </div>

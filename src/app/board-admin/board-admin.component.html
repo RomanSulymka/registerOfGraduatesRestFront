@@ -1,17 +1,17 @@
 <!--Nav Bar -->
 <ol class="breadcrumb" style="margin-right: 1%; margin-left: 1%; margin-top: 1%; border-radius: 16px;">
-  <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
-  <li class="breadcrumb-item"><a routerLink="/profile">User</a></li>
-  <li class="breadcrumb-item active">Admin Page</li>
+  <li class="breadcrumb-item"><a routerLink="/">Головна</a></li>
+  <li class="breadcrumb-item"><a routerLink="/profile">Користувач</a></li>
+  <li class="breadcrumb-item active">Адмін панель</li>
 </ol>
 
 <mat-tab-group mat-align-tabs="start">
   
   <!-- Users Page -->
-  <mat-tab label="Users" >
+  <mat-tab label="Користувачі" >
     <div fxLayout fxLayoutAlign="center center">
       <mat-form-field appearance="legacy" fxFlex="40%">
-        <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Find user">
+        <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Знайти користувача">
       </mat-form-field>
       <button color="primary" style="position: relative; left: 70%;" (click)="openAddDialog()" mat-icon-button>
         <mat-icon>data_saver_on</mat-icon>
@@ -30,7 +30,7 @@
 
     <!-- Column Username -->
     <ng-container matColumnDef="username">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Username </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Ім'я користувача </th>
       <td mat-cell *matCellDef="let element"> {{element.username}} </td>
     </ng-container>
    
@@ -42,14 +42,14 @@
    
     <!-- Column Role -->
     <ng-container matColumnDef="role">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Role </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Роль </th>
       <td mat-cell *matCellDef="let element"> 
         <span *ngFor="let role of element.roles">{{role.name}}</span>{{element.role}} </td>
     </ng-container>
    
     <!-- Action Update -->
     <ng-container matColumnDef="update">
-      <th mat-header-cell *matHeaderCellDef> Update </th>
+      <th mat-header-cell *matHeaderCellDef> Оновити </th>
       <td mat-cell *matCellDef="let element">
         <button mat-icon-button color="accent" (click)="editRecord(element.id, element.username, element.password, element.email, element.role)">
             <mat-icon class="mat-18">update</mat-icon>
@@ -59,7 +59,7 @@
 
     <!-- Action Delete -->
     <ng-container matColumnDef="delete">
-        <th mat-header-cell *matHeaderCellDef> Delete </th>
+        <th mat-header-cell *matHeaderCellDef> Видалити </th>
         <td mat-cell *matCellDef="let element">
           <button mat-icon-button color="warn" (click)="deleteUserRecord(element.id, element.username, element.email, element.role)">
               <mat-icon class="mat-18">delete</mat-icon>
@@ -77,11 +77,11 @@
 
 <!-- Graduates Page-->
 
-  <mat-tab label="Graduates">
+  <mat-tab label="Випускники">
 
     <div fxLayout fxLayoutAlign="center center">
       <mat-form-field appearance="legacy" fxFlex="40%">
-        <input matInput type="text" (keyup)="doFilterGraduate($event.target.value)" placeholder="Find graduated">
+        <input matInput type="text" (keyup)="doFilterGraduate($event.target.value)" placeholder="Знайти випускника">
       </mat-form-field>
       <button color="primary" style="position: relative; left: 74%;" (click)="openAddGraduateDialog()" mat-icon-button>
         <mat-icon>data_saver_on</mat-icon>
@@ -98,19 +98,19 @@
 
         <!-- Column First Name -->    
         <ng-container matColumnDef="firstName">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> First Name </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Ім'я </th>
           <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
         </ng-container>
       
         <!-- Column Middle Name -->    
         <ng-container matColumnDef="middleName">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Middle Name </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> По батькові </th>
           <td mat-cell *matCellDef="let element"> {{element.middleName}} </td>
         </ng-container>
 
         <!-- Column Last Name -->    
         <ng-container matColumnDef="lastName">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Last Name </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Прізвище </th>
           <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
         </ng-container>
 
@@ -122,7 +122,7 @@
       
         <!-- Column Job Title -->
         <ng-container matColumnDef="jobTitle">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Company </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Компанія </th>
           <td mat-cell *matCellDef="let element"> 
             <ng-container  *ngFor="let work of element.works; let i =index">
               <i *ngIf ="i>=element.works.length -1">
@@ -132,13 +132,13 @@
 
         <!-- Column Gender -->
         <ng-container matColumnDef="gender">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Gender </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Стать </th>
           <td mat-cell *matCellDef="let element"> {{element.gender}} </td>
         </ng-container>
 
         <!-- Action Update -->
         <ng-container matColumnDef="workButton">
-          <th mat-header-cell *matHeaderCellDef> Add work </th>
+          <th mat-header-cell *matHeaderCellDef> Додати роботу </th>
           <td mat-cell *matCellDef="let element">
             <button mat-icon-button color="primary" (click)="openWork(element.id, element.works)">
               <mat-icon>work_outline</mat-icon>
@@ -149,7 +149,7 @@
         <!-- Action Update 
             TODO: Must add (click) -->
         <ng-container matColumnDef="updateGraduate">
-          <th mat-header-cell *matHeaderCellDef> Update </th>
+          <th mat-header-cell *matHeaderCellDef> Оновити </th>
           <td mat-cell *matCellDef="let element">
             <button mat-icon-button color="warn" (click)="editRecordGraduate(element.id, element.firstName, element.middleName,
                                                             element.lastName, element.email, element.works, element.gender, element.imageUrl)">
@@ -161,7 +161,7 @@
         <!-- Action Delete 
               TODO: Must add (click) -->
         <ng-container matColumnDef="deleteGraduate">
-            <th mat-header-cell *matHeaderCellDef> Delete </th>
+            <th mat-header-cell *matHeaderCellDef> Видалити </th>
             <td mat-cell *matCellDef="let element">
               <button mat-icon-button color="warn" (click)="deleteGraduate(element.id, element.firstName, element.middleName,
                                                             element.lastName, element.email, element.jobTitle, element.gender, element.imageUrl)">
@@ -180,10 +180,10 @@
   </mat-tab>
 
     <!-- Works Page -->
-    <mat-tab label="Works" >
+    <mat-tab label="Робота" >
       <div fxLayout fxLayoutAlign="center center">
         <mat-form-field appearance="legacy" fxFlex="40%">
-          <input matInput type="text" (keyup)="doFilterWork($event.target.value)" placeholder="Find work">
+          <input matInput type="text" (keyup)="doFilterWork($event.target.value)" placeholder="Знайти роботу">
         </mat-form-field>
       </div>
       <!-- Sorting -->
@@ -198,31 +198,31 @@
 
     <!-- Column Username -->
     <ng-container matColumnDef="company">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> company </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Компанія </th>
       <td mat-cell *matCellDef="let element"> {{element.company}} </td>
     </ng-container>
    
     <!-- Column Email -->
     <ng-container matColumnDef="position">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> position </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Позиція </th>
       <td mat-cell *matCellDef="let element"> {{element.position}} </td>
     </ng-container>
    
     <!-- Column Email -->
     <ng-container matColumnDef="startWork">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> startWork </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Рік початку </th>
       <td mat-cell *matCellDef="let element"> {{element.startWork}} </td>
     </ng-container>
 
     <!-- Column Email -->
     <ng-container matColumnDef="endWork">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> endWork </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Рік закінчення </th>
       <td mat-cell *matCellDef="let element"> {{element.endWork}} </td>
     </ng-container>
     
     <!-- Action Update -->
     <ng-container matColumnDef="updateWork">
-      <th mat-header-cell *matHeaderCellDef> Update </th>
+      <th mat-header-cell *matHeaderCellDef> Оновити </th>
       <td mat-cell *matCellDef="let element">
         <button mat-icon-button color="accent" (click)="editWork(element.id, element.company, element.position,
         element.startWork, element.endWork)">
@@ -233,7 +233,7 @@
 
     <!-- Action Delete -->
     <ng-container matColumnDef="deleteWork">
-        <th mat-header-cell *matHeaderCellDef> Delete </th>
+        <th mat-header-cell *matHeaderCellDef> Видалити </th>
         <td mat-cell *matCellDef="let element">
           <button mat-icon-button color="warn" (click)="deleteWork(element.id, element.company, element.position,
           element.startWork, element.endWork)">

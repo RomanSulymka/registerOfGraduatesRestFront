@@ -1,11 +1,21 @@
 <div class="container" style="width: 500px; height: auto;">
-  <h3 mat-dialog-title>User Name: {{data.username}}</h3>
+  <h3 mat-dialog-title>Користувач: {{data.username}}</h3>
 
   <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm">
 
     <div class="form">
-      <mat-form-field color="accent">
-        <input matInput #input class="form-control" placeholder="Id" [(ngModel)]="data.id" name="id" >
+      <mat-form-field>
+        <mat-label>Id</mat-label>
+        <input matInput #input placeholder="Id" [(ngModel)]="data.id" name="id" >
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <!--Textarea for demo purposes-->
+    <div class="form">
+      <mat-form-field>
+        <mat-label>Іи'я користувача</mat-label>
+        <input matInput #input placeholder="Ім'я користувача" [(ngModel)]="data.username" name="username" required >
         <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
     </div>
@@ -13,14 +23,7 @@
     <!--Textarea for demo purposes-->
     <div class="form">
       <mat-form-field color="accent">
-        <textarea matInput #input class="form-control" placeholder="username" [(ngModel)]="data.username" name="username" required ></textarea>
-        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
-      </mat-form-field>
-    </div>
-
-    <!--Textarea for demo purposes-->
-    <div class="form">
-      <mat-form-field color="accent">
+        <mat-label>Password</mat-label>
         <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="data.password" name="password" required >
         <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
           <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
@@ -32,15 +35,16 @@
     
     <!--Contains mat-hint for characters count and has maxLengt set-->
     <div class="form">
-      <mat-form-field color="accent">
-        <input matInput #inputstate class="form-control" placeholder="email" [(ngModel)]="data.email" name="email" required >
+      <mat-form-field>
+        <mat-label>E-mail</mat-label>
+        <input matInput #inputstate placeholder="email" [(ngModel)]="data.email" name="email" required >
         <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
     </div>
 
     <div class="form">
       <mat-form-field>
-        <mat-label>Role</mat-label>
+        <mat-label>Роль</mat-label>
          <mat-select formControlName="selectedValue" (change)="GetRoleById($event)" [(ngModel)]="selectedValue" name="role">
            <mat-option [value]= "role" *ngFor="let role of rolesList">
              {{role.name}}
@@ -50,8 +54,8 @@
     </div>
 
     <div mat-dialog-actions>
-      <button mat-button [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="updateUser(formControl.value)">Save</button>
-      <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
+      <button mat-raised-button color="primary" [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="updateUser(formControl.value)">Зберегти</button>
+      <button mat-raised-button color="warn" (click)="onNoClick()" tabindex="-1">Відмінити</button>
     </div>
   </form>
 </div>

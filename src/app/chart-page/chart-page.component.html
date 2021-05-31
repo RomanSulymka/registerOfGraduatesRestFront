@@ -1,12 +1,12 @@
 <!--Nav Bar -->
 <ol class="breadcrumb" style="margin-right: 1%; margin-left: 1%; margin-top: 1%; border-radius: 16px;">
-    <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
-    <li class="breadcrumb-item"><a routerLink="/graduated">Graduates</a></li>
-    <li class="breadcrumb-item active">Charts</li>
+    <li class="breadcrumb-item"><a routerLink="/">Головна</a></li>
+    <li class="breadcrumb-item"><a routerLink="/graduated">Випускники</a></li>
+    <li class="breadcrumb-item active">Діаграми</li>
   </ol>
   
 <mat-tab-group>
-    <mat-tab label="Company charts">
+    <mat-tab label="Діаграма позицій">
         <div>
             <div>
                 <div class="chart">
@@ -23,11 +23,11 @@
             </div>
         </div>
         <div>
-            <button mat-button mat-raised-button color="primary" (click)="pieChartLegend=!pieChartLegend">Toggle Legend</button>
-            <button mat-button mat-raised-button color="primary" (click)="changeLegendPosition()" style="margin-bottom: 20px;">Change Legend Position</button>
+            <button mat-button mat-raised-button color="primary" (click)="pieChartLegend=!pieChartLegend">Переключити легенду</button>
+            <button mat-button mat-raised-button color="primary" (click)="changeLegendPosition()" style="margin-bottom: 20px;">Змінити позицію легенди</button>
         </div>
     </mat-tab>
-    <mat-tab label="Technology charts">
+    <mat-tab label="Діаграма технологій">
         <div>
             <div>
                 <div class="chart">
@@ -44,8 +44,8 @@
             </div>
         </div>
         <div>
-            <button mat-button mat-raised-button color="primary" (click)="pieChartTechnologyLegend=!pieChartTechnologyLegend">Toggle Legend</button>
-            <button mat-button mat-raised-button color="primary" (click)="changeLegendPosition()" style="margin-bottom: 20px;">Change Legend Position</button>
+            <button mat-button mat-raised-button color="primary" (click)="pieChartTechnologyLegend=!pieChartTechnologyLegend">Переключити легенду</button>
+            <button mat-button mat-raised-button color="primary" (click)="changeLegendPosition()" style="margin-bottom: 20px;">Змінити позицію легенди</button>
         </div>
     </mat-tab>
 </mat-tab-group>

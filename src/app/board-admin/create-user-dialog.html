@@ -1,5 +1,5 @@
 <div class="container">
-    <h3 mat-dialog-title>Add new User</h3>
+    <h3 mat-dialog-title>Створити нового користувача</h3>
   
     <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm">
 
@@ -16,7 +16,7 @@
       <!--Textarea for demo purposes-->
     <div class="form">
         <mat-form-field>
-          <mat-label>Password</mat-label>
+          <mat-label>Пароль</mat-label>
           <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="data.password" name="password" required >
           <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
@@ -35,7 +35,7 @@
   
       <div class="form">
         <mat-form-field>
-          <mat-label>Role</mat-label>
+          <mat-label>Роль</mat-label>
            <mat-select formControlName="selectedValue" (change)="GetRoleById($event)" [(ngModel)]="selectedValue" name="role">
              <mat-option [value]= "role" *ngFor="let role of rolesList">
                {{role.name}}
@@ -45,8 +45,8 @@
       </div>
 
       <div mat-dialog-actions>
-        <button mat-raised-button color="primary" [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="onSubmit()">Save</button>
-        <button mat-raised-button color="accent"  (click)="onNoClick()" tabindex="-1">Cancel</button>
+        <button mat-raised-button color="primary" [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="onSubmit()">Зберегти</button>
+        <button mat-raised-button color="accent"  (click)="onNoClick()" tabindex="-1">Відмінити</button>
       </div>
     </form>
   </div>

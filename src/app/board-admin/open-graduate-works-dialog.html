@@ -1,45 +1,42 @@
 <div class="container">
-    <h3 mat-dialog-title>Add new work</h3>
+    <h3 mat-dialog-title>Додати нову роботу</h3>
   
-    <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm">
-      <div class="form">
-        <mat-form-field color="accent">
-          <input matInput #input class="form-control" placeholder="Graduated Id" [(ngModel)]="data.graduatedId" name="graduatedId" >
-          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
-        </mat-form-field>
-      </div>
-
+    <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm" style="width: 300px;">
         <div class="form">
-            <mat-form-field color="accent">
-              <textarea matInput #input class="form-control" placeholder="company" [(ngModel)]="data.company" name="company" required ></textarea>
+            <mat-form-field>
+              <mat-label>Компанія</mat-label> 
+              <input matInput #input placeholder="company" [(ngModel)]="data.company" name="company" required >
               <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
             </mat-form-field>
         </div>
 
         <div class="form">
-            <mat-form-field color="accent">
-              <textarea matInput #input class="form-control" placeholder="position" [(ngModel)]="data.position" name="position" required ></textarea>
+            <mat-form-field>
+              <mat-label>Позиція</mat-label> 
+              <input matInput #input placeholder="position" [(ngModel)]="data.position" name="position" required>
               <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
             </mat-form-field>
         </div>
 
         <div class="form">
-            <mat-form-field color="accent">
-              <textarea matInput #input class="form-control" placeholder="startWork" [(ngModel)]="data.startWork" name="startWork" required ></textarea>
+            <mat-form-field>
+              <mat-label>Рік початку роботи</mat-label> 
+              <input matInput #input placeholder="startWork" [(ngModel)]="data.startWork" name="startWork" required >
               <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
             </mat-form-field>
         </div>
 
         <div class="form">
-            <mat-form-field color="accent">
-              <textarea matInput #input class="form-control" placeholder="endWork" [(ngModel)]="data.endWork" name="endWork" required ></textarea>
+            <mat-form-field>
+              <mat-label>Кінець роботи</mat-label> 
+              <input matInput #input placeholder="endWork" [(ngModel)]="data.endWork" name="endWork" required>
               <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
             </mat-form-field>
         </div>       
         
       <div mat-dialog-actions>
-        <button mat-button [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="addWork(data.graduatedId)">Save</button>
-        <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
+        <button mat-raised-button color="primary" [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="addWork(data.graduatedId)">Зберегти</button>
+        <button mat-raised-button color="warn" (click)="onNoClick()" tabindex="-1">Скасувати</button>
       </div>
     </form>
   </div>

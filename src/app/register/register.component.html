@@ -13,7 +13,7 @@
       novalidate
     >
       <div class="form-group">
-        <label for="username">Username</label>
+        <label for="username">Ім'я користувача</label>
         <input
           type="text"
           class="form-control"
@@ -25,17 +25,17 @@
           #username="ngModel"
         />
         <div class="alert-danger" *ngIf="username.errors && f.submitted">
-          <div *ngIf="username.errors.required">Username is required</div>
+          <div *ngIf="username.errors.required">Ім'я користувача обов'язкове для введення!</div>
           <div *ngIf="username.errors.minlength">
-            Username must be at least 3 characters
+            Ім'я повинне бути більше ніж 3 символи!
           </div>
           <div *ngIf="username.errors.maxlength">
-            Username must be at most 20 characters
+            Ім'я повинне бути менше ніж 20 символів!
           </div>
         </div>
       </div>
       <div class="form-group">
-        <label for="email">Email</label>
+        <label for="email">E-mail</label>
         <input
           type="email"
           class="form-control"
@@ -46,14 +46,14 @@
           #email="ngModel"
         />
         <div class="alert-danger" *ngIf="email.errors && f.submitted">
-          <div *ngIf="email.errors.required">Email is required</div>
+          <div *ngIf="email.errors.required">Email обов'язковий для введення!</div>
           <div *ngIf="email.errors.email">
-            Email must be a valid email address
+            Введіть правильний email!
           </div>
         </div>
       </div>
       <div class="form-group">
-        <label for="password">Password</label>
+        <label for="password">Пароль</label>
         <input
           type="password"
           class="form-control"
@@ -64,23 +64,23 @@
           #password="ngModel"
         />
         <div class="alert-danger" *ngIf="password.errors && f.submitted">
-          <div *ngIf="password.errors.required">Password is required</div>
+          <div *ngIf="password.errors.required">Пароль необхідний для введення!</div>
           <div *ngIf="password.errors.minlength">
-            Password must be at least 6 characters
+            Пароль повинен бути більший ніж 6 символів!
           </div>
         </div>
       </div>
       <div class="form-group">
-        <button class="btn btn-primary btn-block">Sign Up</button>
+        <button class="btn btn-primary btn-block">Зареєструватися</button>
       </div>
 
       <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
-        Signup failed!<br />{{ errorMessage }}
+       Помилка реєстрації!<br />{{ errorMessage }}
       </div>
     </form>
 
     <div class="alert alert-success" *ngIf="isSuccessful">
-      Your registration is successful!
+      Ваша реєстрація вдала!
     </div>
   </div>
 </div>

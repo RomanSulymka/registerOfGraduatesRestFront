@@ -1,75 +1,83 @@
 <div class="container" style="width: 300px;">
-    <h3 mat-dialog-title>Add new Graduate</h3>
+    <h3 mat-dialog-title>Додати нового випускника</h3>
   
     <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm">
 
   
         <div class="form">
-            <mat-form-field color="accent">
-              <textarea matInput #input class="form-control" placeholder="firstName" [(ngModel)]="data.firstName" name="firstName" required ></textarea>
+            <mat-form-field>
+              <mat-label>Ім'я</mat-label>              
+              <input matInput #input placeholder="firstName" [(ngModel)]="data.firstName" name="firstName" required>
               <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
             </mat-form-field>
           </div>
        
           <!--Textarea for demo purposes-->
           <div class="form">
-            <mat-form-field color="accent">
-              <textarea matInput #input class="form-control" placeholder="middleName" [(ngModel)]="data.middleName" name="middleName" required ></textarea>
+            <mat-form-field>
+              <mat-label>По батькові</mat-label> 
+              <input matInput #input placeholder="middleName" [(ngModel)]="data.middleName" name="middleName" required>
               <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
             </mat-form-field>
           </div>
         
          <!--Textarea for demo purposes-->
          <div class="form">
-            <mat-form-field color="accent">
-              <textarea matInput #input class="form-control" placeholder="lastName" [(ngModel)]="data.lastName" name="lastName" required ></textarea>
+            <mat-form-field>
+              <mat-label>Прізвище</mat-label> 
+              <input matInput #input placeholder="lastName" [(ngModel)]="data.lastName" name="lastName" required >
               <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
             </mat-form-field>
           </div>
             
           <!--Contains mat-hint for characters count and has maxLengt set-->
           <div class="form">
-            <mat-form-field color="accent">
-              <input matInput #inputstate class="form-control" placeholder="email" [(ngModel)]="data.email" name="email" required >
+            <mat-form-field>
+              <mat-label>E-mail</mat-label> 
+              <input matInput #inputstate placeholder="email" [(ngModel)]="data.email" name="email" required >
               <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
             </mat-form-field>
           </div>
         
          <!--Textarea for demo purposes-->
          <div class="form">
-            <mat-form-field color="accent">
-              <textarea matInput #input class="form-control" placeholder="jobTitle" [(ngModel)]="data.jobTitle" name="jobTitle" required ></textarea>
+            <mat-form-field>
+              <mat-label>Позиція</mat-label> 
+              <input matInput #input placeholder="jobTitle" [(ngModel)]="data.jobTitle" name="jobTitle" required >
               <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
             </mat-form-field>
           </div>
         
          <!--Textarea for demo purposes-->
          <div class="form">
-            <mat-form-field color="accent">
-              <textarea matInput #input class="form-control" placeholder="gender" [(ngModel)]="data.gender" name="gender" required ></textarea>
+            <mat-form-field>
+              <mat-label>Стать</mat-label> 
+              <input matInput #input placeholder="gender" [(ngModel)]="data.gender" name="gender" required >
               <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
             </mat-form-field>
           </div>
 
          <!--Textarea for demo purposes-->
          <div class="form">
-          <mat-form-field color="accent">
-            <textarea matInput #input class="form-control" placeholder="graduationYearFromBachelor" [(ngModel)]="data.graduationYearFromBachelor" name="graduationYearFromBachelor" required ></textarea>
+          <mat-form-field>
+            <mat-label>Дата випуску</mat-label> 
+            <input matInput #input placeholder="graduationYearFromBachelor" [(ngModel)]="data.graduationYearFromBachelor" name="graduationYearFromBachelor" required >
             <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
           </mat-form-field>
         </div>
 
          <!--Textarea for demo purposes-->
          <div class="form">
-          <mat-form-field color="accent">
-            <textarea matInput #input class="form-control" placeholder="imageUrl" [(ngModel)]="data.imageUrl" name="imageUrl" required ></textarea>
+          <mat-form-field>
+            <mat-label>Посилання на зображення</mat-label> 
+            <textarea matInput #input placeholder="imageUrl" [(ngModel)]="data.imageUrl" name="imageUrl" required ></textarea>
             <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
           </mat-form-field>
         </div>
         
       <div mat-dialog-actions>
-        <button mat-button [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="onAddGraduated()">Save</button>
-        <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
+        <button mat-raised-button color="primary" [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="onAddGraduated()">Зберегти</button>
+        <button mat-raised-button color="warn" (click)="onNoClick()" tabindex="-1">Відмінити</button>
       </div>
     </form>
   </div>
